@@ -17,19 +17,19 @@
 
 .header-second-line {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .shop-name {
   font-family: "hfonts";
   letter-spacing: 2px;
-  font-size: clamp(20px, 3vw, 60px);
+  font-size: clamp(20px, 2vw, 50px);
 }
 .sign-log {
   display: flex;
   gap: 10px;
   font-family: "signfont";
-  font-size: clamp(20px, 1vw, 30px);
+  align-items: center;
 }
 
 .sign-log a {
@@ -42,13 +42,20 @@
 }
 
 .search-bar {
-  width: clamp(300px, 2vw, 300px);
-  border-radius: 25px;
+  width: clamp(300px, 2vw, 100px);
+  border-radius: 20px;
   border: 1px solid black;
-  padding-left: 10px;
+  padding-left: 20px;
+  height: 40px;
 }
 
 header {
   background-color: rgb(238, 235, 235);
-  padding: 20px;
+  padding: 10px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#search-icon{
+  transform: translateX(-50px);
 }

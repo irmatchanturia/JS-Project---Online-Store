@@ -41,3 +41,26 @@ function getStar(num) {
   }
   return stars;
 }
+
+
+const sideBar= document.getElementsByClassName("side-bar")[0]
+function getAllCategories(){
+    fetch("https://api.everrest.educata.dev/shop/products/categories")
+    .then((response)=>response.json())
+    .then((data)=>{
+        data.forEach((category)=>{
+            sideBar.innerHTML+=categoryHtml(category)
+        });
+    });
+};
+getAllCategories()
+
+function categoryHtml(category){
+    return `
+    <div class="category">
+    <input type="checkbox">
+    <img src=${category.image}>
+    <p>${category.name}</p>
+    </div>
+    `
+}
