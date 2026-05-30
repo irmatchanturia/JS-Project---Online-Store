@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
+
     <link rel="stylesheet" href="../css/main-page.css" />
     <link rel="stylesheet" href="../css/reset.css" />
   </head>
@@ -13,13 +20,20 @@
     <div class="main-class">
       <div class="side-bar">
         <div class="side-bar-h">
-        <h2>Filters</h2>
-        <h2>Categories</h2>
+          <h4>Categories</h4>
+        </div>
+        <div class="side-bar-categories"></div>
+        <div class="filter-price">
+          <div id="slider"></div>
+          <div class="prices">
+            <p id="min-price">100$</p>
+            <p id="max-price">5000$</p>
+          </div>
         </div>
       </div>
+
       <div class="products"></div>
     </div>
-
 
     <script src="../script.js"></script>
     <script>
@@ -31,5 +45,6 @@
           });
       });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

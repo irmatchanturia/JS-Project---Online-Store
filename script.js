@@ -43,7 +43,7 @@ function getStar(num) {
 }
 
 
-const sideBar= document.getElementsByClassName("side-bar")[0]
+const sideBar= document.getElementsByClassName("side-bar-categories")[0]
 function getAllCategories(){
     fetch("https://api.everrest.educata.dev/shop/products/categories")
     .then((response)=>response.json())
@@ -60,7 +60,31 @@ function categoryHtml(category){
     <div class="category">
     <input type="checkbox">
     <img src=${category.image}>
-    <p>${category.name}</p>
+    <p>${capitalizeFirstLetter(category.name)}</p>
     </div>
     `
 }
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const slider = document.getElementById("slider");
+
+noUiSlider.create(slider, {
+    start: [0, 5000],
+    connect: true,
+    range: {
+        min: 0,
+        max: 5000
+    }
+});
+
+slider.noUiSlider.on("update", function(values, handle) {
+  console.log(values); // 
+
+  const min = values[0];
+  const max = values[1];
+
+  document.getElementById("min-price").textContent = Math.floor(min) + "$";
+  document.getElementById("max-price").textContent = Math.floor(max)+ "$";
+});

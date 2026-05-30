@@ -17,7 +17,7 @@
   grid-template-columns: repeat(3, 300px);
   row-gap: 20px;
   gap: 20px;
-  background-color: #aaa;
+  background-color: rgb(238, 235, 235);
   padding: 15px;
   border-radius: 10px;
 }
@@ -74,9 +74,8 @@
 .category {
   display: flex;
   font-family: "signfont";
-  font-size: 20px;
+  font-size: 16px;
   gap: 5px;
-  background-color: white;
   padding: 10px;
   border-radius: 10px;
 }
@@ -103,11 +102,47 @@
   gap: 10px;
 }
 
-.side-bar-h{
+.side-bar-h {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-family: "signfont";
+  font-size: 16px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.side-bar-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noUi-target {
+  margin-top: 30px;
+  height: 10px;
+  background: white;
+}
+
+.noUi-connect {
+  background: rgb(76, 76, 135);
+}
+
+.noUi-handle {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.noUi-handle::before,
+.noUi-handle::after {
+  display: none;
+}
+
+.prices{
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    font-family: "signfont";
-    font-size: 20px;
-    padding-bottom: 10px;
+    justify-content: space-between;
+    margin-top: 10px;
 }
