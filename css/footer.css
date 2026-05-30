@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "name-font";
+  src: url("../fonts/name-font.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "thin-font";
+  src: url("../fonts/light-font.ttf") format("opentype");
+}
+
+.footer-main {
+  background-color: rgb(238, 235, 235);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+  padding: 20px 40px;
+}
+
+.links {
+  display: flex;
+  gap: 15px;
+}
+
+.links img {
+  width: 25px;
+}
+
+.links a {
+  margin-bottom: 40px;
+}
+
+.footer-left h3 {
+  font-size: 20px;
+  font-family: "name-font";
+  letter-spacing: 5px;
+}
+
+.footer-line {
+  width: 2.25rem;
+  height: 1.5px;
+  background-color: black;
+  margin-top: 40px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 30px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.footer-right {
+  flex: 1;
+  max-width: 500px;
+}
+
+.footer-main input,
+.footer-main textarea {
+  border: 2px solid black;
+  background-color: transparent;
+  width: 100%;
+}
+
+.footer-button {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+  border: 1px solid black;
+  align-self: flex-end;
+}
+
+.footer-main button:hover {
+  background-color: white;
+  color: black;
+}
+
+.name-field,
+.email-field,
+.subject,
+.textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: "thin-font";
+}
+
+.footer-main input,
+.footer-main textarea {
+  width: 100%;
+  padding: 5px;
+}
+
+.footer-main form {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+@media screen and (max-width: 510px) {
+  .footer-main {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .footer-left,
+  .footer-right {
+    width: 100%;
+  }
+}

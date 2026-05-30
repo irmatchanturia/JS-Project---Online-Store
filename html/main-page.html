@@ -10,9 +10,9 @@
     />
 
     <script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
-
-    <link rel="stylesheet" href="../css/main-page.css" />
     <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main-page.css" />
+    <link rel="stylesheet" href="../css/footer.css">
   </head>
   <body>
     <div id="header" style="position: fixed; width: 100%"></div>
@@ -36,6 +36,7 @@
         <div class="pagination"></div>
       </div>
     </div>
+    <div id="footer"></div>
 
     <script src="../js/script.js"></script>
     <script src="../js/slider.js"></script>
@@ -48,6 +49,17 @@
             document.getElementById("header").innerHTML = data;
           });
       });
+    </script>
+
+    <script>
+      async function loadFooter() {
+        const response = await fetch("footer.html");
+        const footerHTML = await response.text();
+
+        document.getElementById("footer").innerHTML = footerHTML;
+      }
+
+      loadFooter();
     </script>
   </body>
 </html>
