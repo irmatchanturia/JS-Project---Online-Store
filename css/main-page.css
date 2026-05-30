@@ -57,11 +57,12 @@
 
 .before-discount {
   text-decoration: line-through;
-  color: red;
+  color: rgb(188, 181, 181);
 }
 
 .discount-persentage {
-  border: 1px solid black;
+  border: 1px solid red;
+  color: red;
   padding: 2px 5px;
   border-radius: 5px;
 }
@@ -141,8 +142,29 @@
   display: none;
 }
 
-.prices{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+.prices {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  color: rgb(49, 43, 43);
+}
+
+.pagination p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: "signfont";
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.selected-index{
+    background-color: rgb(185, 179, 179);
 }
