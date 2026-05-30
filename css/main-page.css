@@ -1,3 +1,69 @@
-.products{
-    padding-top: 200px;
+@font-face {
+  font-family: "signfont";
+  src: url(../fonts/Nunito-Italic-VariableFont_wght.ttf);
+}
+
+.products {
+  padding-top: 200px;
+}
+.fa-star {
+  color: rgb(254, 212, 0);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  row-gap: 20px;
+  gap: 20px;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 10px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.product img {
+  width: 100%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.price {
+  display: flex;
+  gap: 8px;
+  font-family: "signfont";
+}
+
+.rating {
+  display: flex;
+  gap: 10px;
+}
+
+.before-discount {
+  text-decoration: line-through;
+  color: red;
+}
+
+.discount-persentage {
+  border: 1px solid black;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.title {
+  font-family: "signfont";
+  font-size: clamp(20px, 1vw, 30px);
 }

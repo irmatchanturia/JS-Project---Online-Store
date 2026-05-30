@@ -1,24 +1,43 @@
-let products = document.getElementsByClassName("products")[0]
+let products = document.getElementsByClassName("products")[0];
 
-function getAllProducts(){
-    fetch("https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=5")
-    .then((response)=>response.json())
-    .then((data)=>{
-        data.products.forEach(item => {
-        products.innerHTML+=productHtml(item)
-        });
-    })
+function getAllProducts() {
+  fetch(
+    "https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=6",
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      data.products.forEach((item) => {
+        products.innerHTML += productHtml(item);
+      });
+    });
 }
-getAllProducts()
+getAllProducts();
 
-function productHtml(item){
-    return `
-    <div class="eachProduct">
-        <p class="price discountPrice">${item.price.current} ${item.price.currency} ${item.price.beforeDiscount} ${item.price.discountPercentage}</p>
-        <img src="${item.thumbnail}">  
-        <p class="title">${item.title}</p>
-        <p class="description">${item.description}</p>
-        <button class="addToCart"></button>
+function productHtml(item) {
+  return `
+       <div class="product">
+      <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
+      <div class="info">
+      <p class="title">${item.title}</p>
+      <div class="rating">
+        <p>${getStar(item.rating)}</p>
+        <p>(${item.stock})</p>
+      </div>
+      <div class="price">
+        <p class="price current-price">${item.price.current}$</p>
+        <p class="price before-discount">${item.price.beforeDiscount}$</p>
+        <p class="price discount-persentage">${item.price.discountPercentage}%</p>
+      </div>
+      </div>
     </div>
-    `
+    `;
+}
+
+function getStar(num) {
+  let starNumber = num;
+  let stars = "";
+  for (let i = 0; i < starNumber; i++) {
+    stars += `<i class="fa-solid fa-star"></i>`;
+  }
+  return stars;
 }
