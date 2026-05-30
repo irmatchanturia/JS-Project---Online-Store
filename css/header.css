@@ -1,6 +1,54 @@
-.header-first-line{
-    background-color: black;
-    color: gray;
-    padding: 10px;
-    text-align: center;
+@font-face {
+  font-family: "hfonts";
+  src: url(../fonts/BowlbyOne-Regular.ttf) format("opentype");
+}
+@font-face {
+  font-family: "signfont";
+  src: url(../fonts/Nunito-Italic-VariableFont_wght.ttf);
+}
+
+.header-first-line {
+  background-color: black;
+  color: gray;
+  padding: 10px;
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+.header-second-line {
+  display: flex;
+  justify-content: space-around;
+}
+
+.shop-name {
+  font-family: "hfonts";
+  letter-spacing: 2px;
+  font-size: clamp(20px, 3vw, 60px);
+}
+.sign-log {
+  display: flex;
+  gap: 10px;
+  font-family: "signfont";
+  font-size: clamp(20px, 1vw, 30px);
+}
+
+.sign-log a {
+  color: rgb(26, 31, 31);
+}
+.sign-log a:hover {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.search-bar {
+  width: clamp(300px, 2vw, 300px);
+  border-radius: 25px;
+  border: 1px solid black;
+  padding-left: 10px;
+}
+
+header {
+  background-color: rgb(238, 235, 235);
+  padding: 20px;
 }
