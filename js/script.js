@@ -2,9 +2,8 @@ let productsTag = document.getElementsByClassName("products")[0];
 let pagination = document.getElementsByClassName("pagination")[0];
 let index = 1;
 let selectedCategories = [];
-let min = document.getElementById("min-price")
-let max = document.getElementById("max-price")
-
+let min = document.getElementById("min-price");
+let max = document.getElementById("max-price");
 
 //ვიძახებთ პროდუქტების პირველ გვერდს
 getProducts(index);
@@ -27,7 +26,6 @@ function getProducts() {
       handlePagination(data, index);
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
-        
       });
     });
 }
@@ -47,21 +45,22 @@ function handlePagination(data, index) {
 
 function productHtml(item) {
   return `
-       <div class="product">
-      <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
-      <div class="info">
-      <p class="title">${item.title}</p>
-      <div class="rating">
-        <p>${getStar(item.rating)}</p>
-        <p>(${item.stock})</p>
-      </div>
-      <div class="price">
-        <p class="price current-price">${item.price.current}$</p>
-        <p class="price before-discount">${item.price.beforeDiscount}$</p>
-        <p class="price discount-persentage">${item.price.discountPercentage}%</p>
-      </div>
-      </div>
+ <div class="product">
+  <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
+  <div class="info">
+    <p class="title">${item.title}</p>
+    <div class="rating">
+      <p>${getStar(item.rating)}</p>
+      <p>(${item.stock})</p>
     </div>
+    <div class="price">
+      <p class="price current-price">${item.price.current}$</p>
+      <p class="price before-discount">${item.price.beforeDiscount}$</p>
+      <p class="price discount-persentage">${item.price.discountPercentage}%</p>
+    </div>
+  </div>
+      <button class="add-to-cart">Add to Cart</button>
+</div>
     `;
 }
 
@@ -127,5 +126,3 @@ function onCategoryClicked(id) {
 }
 
 //ფილტრაცია ფასების მიხედვით
-
-

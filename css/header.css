@@ -59,3 +59,7 @@ header {
 #search-icon{
   transform: translateX(-50px);
 }
+
+#store{
+  color: #534AB7;
+}
