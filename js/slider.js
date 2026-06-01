@@ -1,11 +1,11 @@
 const slider = document.getElementById("slider");
 
 noUiSlider.create(slider, {
-    start: [0, 5000],
+    start: [0, 7200],
     connect: true,
     range: {
         min: 0,
-        max: 5000
+        max: 7200
     }
 });
 

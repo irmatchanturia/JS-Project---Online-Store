@@ -2,6 +2,9 @@ let productsTag = document.getElementsByClassName("products")[0];
 let pagination = document.getElementsByClassName("pagination")[0];
 let index = 1;
 let selectedCategories = [];
+let min = document.getElementById("min-price")
+let max = document.getElementById("max-price")
+
 
 //ვიძახებთ პროდუქტების პირველ გვერდს
 getProducts(index);
@@ -24,6 +27,7 @@ function getProducts() {
       handlePagination(data, index);
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
+        
       });
     });
 }
@@ -65,7 +69,7 @@ function productHtml(item) {
 function addClicksOnIndecies() {
   document.querySelectorAll(".index").forEach((element) => {
     element.addEventListener("click", () => {
-      index=element.textContent
+      index = element.textContent;
       getProducts();
     });
   });
@@ -118,6 +122,10 @@ function onCategoryClicked(id) {
   } else {
     selectedCategories.push(id);
   }
-  index=1;
+  index = 1;
   getProducts();
 }
+
+//ფილტრაცია ფასების მიხედვით
+
+

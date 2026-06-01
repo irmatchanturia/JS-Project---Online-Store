@@ -166,6 +166,23 @@
   cursor: pointer;
 }
 
-.selected-index{
-    background-color: rgb(185, 179, 179);
+.selected-index {
+  background-color: rgb(185, 179, 179);
+}
+
+.filter-price {
+  display: flex;
+  flex-direction: column;
+}
+.filter-btn {
+  padding: 10px 15px;
+  margin-top: 30px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-family: "signfont";
+  font-size: bolder;
 }
