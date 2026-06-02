@@ -2,27 +2,46 @@ let productsTag = document.getElementsByClassName("products")[0];
 let pagination = document.getElementsByClassName("pagination")[0];
 let index = 1;
 let selectedCategories = [];
-let min = document.getElementById("min-price");
-let max = document.getElementById("max-price");
+let sideBarBrands = document.getElementsByClassName("side-bar-brands")[0];
+
+let request = {
+  category_id: undefined,
+  brand: undefined,
+  rating: undefined,
+  price_min: undefined,
+  price_max: undefined,
+};
 
 //ვიძახებთ პროდუქტების პირველ გვერდს
 getProducts(index);
+getBrands();
 
 function getProducts() {
   pagination.innerHTML = ""; //პაგინაციების სექციის დაცარიელება
   productsTag.innerHTML = ""; //პროდუქტების სექციის დაცარიელება
 
-  let url = "";
-  //მონაცემების წამოღება დინამიურად, ინდექსით
-  if (selectedCategories.length == 1) {
-    url = `https://api.everrest.educata.dev/shop/products/category/${selectedCategories[0]}?page_index=${index}&page_size=6`;
-  } else {
-    url = `https://api.everrest.educata.dev/shop/products/all?page_index=${index}&page_size=6`;
+  let url = `https://api.everrest.educata.dev/shop/products/search?page_index=${index}&page_size=6`;
+  if (request["category_id"] != undefined) {
+    url += "&category_id=" + request.category_id;
   }
+  if (request["brand"] != undefined) {
+    url += "&brand=" + request.brand;
+  }
+  if (request["rating"] != undefined) {
+    url += "&rating=" + request.rating;
+  }
+  if (request["price_min"] != undefined && request["price_min"] != 0) {
+    url += "&price_min=" + request.price_min;
+  }
+  if (request["price_max"] != undefined) {
+    url += "&price_max=" + request.price_max;
+  }
+  console.log(url);
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       handlePagination(data, index);
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
@@ -59,7 +78,7 @@ function productHtml(item) {
       <p class="price discount-persentage">${item.price.discountPercentage}%</p>
     </div>
   </div>
-      <button class="add-to-cart">Add to Cart</button>
+    <button class="add-to-cart">Add to Cart</button>
 </div>
     `;
 }
@@ -121,8 +140,40 @@ function onCategoryClicked(id) {
   } else {
     selectedCategories.push(id);
   }
+  if (selectedCategories.length == 1) {
+    request.category_id = selectedCategories[0];
+  } else {
+    request.category_id = undefined;
+  }
+
   index = 1;
   getProducts();
 }
 
-//ფილტრაცია ფასების მიხედვით
+let filterButton = document.getElementsByClassName("filter-btn")[0];
+filterButton.addEventListener("click", () => {
+  request.price_min = min;
+  request.price_max = max;
+  getProducts();
+});
+
+function getBrands() {
+  fetch("https://api.everrest.educata.dev/shop/products/brands")
+    .then((response) => response.json())
+    .then((data) => {
+      let brandHtml = `<select class="brand-drop">`;
+      data.forEach((brand) => {
+        brandHtml += `<option value="${brand}">${brand}</option>`;
+      });
+      brandHtml += `</select>`;
+      sideBarBrands.innerHTML += brandHtml;
+      addBrandSelectorListener();
+    });
+}
+
+function addBrandSelectorListener() {
+  let brandDrop = document.getElementsByClassName("brand-drop")[0]
+  brandDrop.addEventListener("change", () => {
+    request.brand = brandDrop.value;
+  });
+}
