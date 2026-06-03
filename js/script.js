@@ -1,9 +1,10 @@
-let productsTag = document.getElementsByClassName("products")[0];
-let pagination = document.getElementsByClassName("pagination")[0];
-let index = 1;
-let selectedCategories = [];
-let sideBarBrands = document.getElementsByClassName("side-bar-brands")[0];
+let productsTag = document.getElementsByClassName("products")[0]; //პროდუქტების სექციასთან წვდომა
+let pagination = document.getElementsByClassName("pagination")[0]; //პაგინაციის ადგილთან წვდომა
+let index = 1; //ინდექსის განსაზღვრა იმისთვის რომ სულ პირველ გვერდზე დაბრუნდეს?
+let selectedCategories = []; //არჩეული კატეგორიები ერეიში რომ მოექცეს
+let sideBarBrands = document.getElementsByClassName("side-bar-brands")[0]; //ბრენდების ჩამონათვალთან წვდომა
 
+//ამ ობიექტით იქმნება ყოველ ჯერზე უნიკალური ლინკი, იმის მიხედვით რა მონაცემები შეგვყავს და რა არა
 let request = {
   category_id: undefined,
   brand: undefined,
@@ -14,8 +15,11 @@ let request = {
 
 //ვიძახებთ პროდუქტების პირველ გვერდს
 getProducts(index);
+//გამოგვაქვს ბრენდების სახელები
 getBrands();
 
+//ეს არის ფუნქცია, რომლითაც ბექიდან მოგვაქვს პროდუქტები და რომელშიც ასევე გაწერილია ლინკების თავისებურებები
+//და რომელიც პროდუქტების სექციაში ათავსებს ბექიდან წამოღებულ პროდუქტებს
 function getProducts() {
   pagination.innerHTML = ""; //პაგინაციების სექციის დაცარიელება
   productsTag.innerHTML = ""; //პროდუქტების სექციის დაცარიელება
@@ -49,7 +53,9 @@ function getProducts() {
     });
 }
 
-//პაგინაციის დაჰენდვლა
+//პაგინაციის დაჰენდვლა - ამ ფუნქციაში განსაზღვრული გვაქვს ცვლადი, რომელიც პროდუქტების მთელ რაოდენობას
+//ყოფს თითო გვერდზე რამდენი პროდუქტიც მინდა მაგაზე. შედეგად ვიღებთ შვიდ გვერდს, თითოეულზე 6 პროდუქტით.
+//
 function handlePagination(data, index) {
   let panelNumber = Math.ceil(data.total / 6);
   for (let i = 1; i <= panelNumber; i++) {
@@ -68,19 +74,38 @@ function productHtml(item) {
   <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
   <div class="info">
     <p class="title">${item.title}</p>
+
     <div class="rating">
       <p>${getStar(item.rating)}</p>
-      <p>(${item.stock})</p>
+      ${
+        item.stock > 0
+          ? `<p>(${item.stock})</p>`
+          : `<p id="not-in-stock"> Not in Stock</p>`
+      }
+      
     </div>
+
     <div class="price">
       <p class="price current-price">${item.price.current}$</p>
-      <p class="price before-discount">${item.price.beforeDiscount}$</p>
-      <p class="price discount-persentage">${item.price.discountPercentage}%</p>
+
+      ${
+        item.price.current !== item.price.beforeDiscount
+          ? `<p class="price before-discount">${item.price.beforeDiscount}$</p>`
+          : ""
+      }
+
+      ${
+        item.price.discountPercentage > 0
+          ? `<p class="price" id="discount-percentage">${item.price.discountPercentage}%</p>`
+          : ""
+      }
     </div>
+
   </div>
-    <button class="add-to-cart">Add to Cart</button>
+
+  <button class="add-to-cart">Add to Cart</button>
 </div>
-    `;
+`;
 }
 
 //დაკლიკებაზე რეაგირების ფუნქცია
@@ -157,13 +182,18 @@ filterButton.addEventListener("click", () => {
   getProducts();
 });
 
+function capitalizeBrandName(str){
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function getBrands() {
   fetch("https://api.everrest.educata.dev/shop/products/brands")
     .then((response) => response.json())
     .then((data) => {
       let brandHtml = `<select class="brand-drop">`;
+      brandHtml += `<option value="" selected disabled hidden>Choose Brand</option>`;
       data.forEach((brand) => {
-        brandHtml += `<option value="${brand}">${brand}</option>`;
+        brandHtml += `<option value="${brand}"> ${capitalizeBrandName(brand)}</option>`;
       });
       brandHtml += `</select>`;
       sideBarBrands.innerHTML += brandHtml;
@@ -172,7 +202,7 @@ function getBrands() {
 }
 
 function addBrandSelectorListener() {
-  let brandDrop = document.getElementsByClassName("brand-drop")[0]
+  let brandDrop = document.getElementsByClassName("brand-drop")[0];
   brandDrop.addEventListener("change", () => {
     request.brand = brandDrop.value;
   });

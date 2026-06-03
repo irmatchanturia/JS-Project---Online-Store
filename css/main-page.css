@@ -72,13 +72,17 @@
   color: rgb(188, 181, 181);
 }
 
-.discount-persentage {
+#discount-percentage {
   border: 1px solid red;
   color: red;
   padding: 2px 5px;
   border-radius: 5px;
 }
 
+#not-in-stock{
+  color: red;
+  font-size: 14px;
+}
 .title {
   font-family: "signfont";
   font-size: clamp(20px, 1vw, 30px);
