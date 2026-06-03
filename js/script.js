@@ -3,7 +3,7 @@ let pagination = document.getElementsByClassName("pagination")[0]; //პაგ�
 let index = 1; //ინდექსის განსაზღვრა იმისთვის რომ სულ პირველ გვერდზე დაბრუნდეს?
 let selectedCategories = []; //არჩეული კატეგორიები ერეიში რომ მოექცეს
 let sideBarBrands = document.getElementsByClassName("side-bar-brands")[0]; //ბრენდების ჩამონათვალთან წვდომა
-
+let allProducts = "";
 //ამ ობიექტით იქმნება ყოველ ჯერზე უნიკალური ლინკი, იმის მიხედვით რა მონაცემები შეგვყავს და რა არა
 let request = {
   category_id: undefined,
@@ -40,19 +40,17 @@ function getProducts() {
   if (request["price_max"] != undefined) {
     url += "&price_max=" + request.price_max;
   }
-  console.log(url);
-
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
       handlePagination(data, index);
+      let allProducts = data.products;
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
       });
     });
 }
-
 //პაგინაციის დაჰენდვლა - ამ ფუნქციაში განსაზღვრული გვაქვს ცვლადი, რომელიც პროდუქტების მთელ რაოდენობას
 //ყოფს თითო გვერდზე რამდენი პროდუქტიც მინდა მაგაზე. შედეგად ვიღებთ შვიდ გვერდს, თითოეულზე 6 პროდუქტით.
 //
@@ -84,7 +82,6 @@ function productHtml(item) {
       }
       
     </div>
-
     <div class="price">
       <p class="price current-price">${item.price.current}$</p>
 
@@ -93,17 +90,14 @@ function productHtml(item) {
           ? `<p class="price before-discount">${item.price.beforeDiscount}$</p>`
           : ""
       }
-
       ${
         item.price.discountPercentage > 0
           ? `<p class="price" id="discount-percentage">${item.price.discountPercentage}%</p>`
           : ""
       }
     </div>
-
   </div>
-
-  <button class="add-to-cart">Add to Cart</button>
+  <button class="add-to-cart" id = ${item}>Add to Cart</button>
 </div>
 `;
 }
@@ -182,7 +176,7 @@ filterButton.addEventListener("click", () => {
   getProducts();
 });
 
-function capitalizeBrandName(str){
+function capitalizeBrandName(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
@@ -207,3 +201,5 @@ function addBrandSelectorListener() {
     request.brand = brandDrop.value;
   });
 }
+
+function addToCart() {}

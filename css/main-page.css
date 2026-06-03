@@ -202,3 +202,11 @@
   font-family: "signfont";
   font-size: bolder;
 }
+
+
+.brand-drop{
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  
+}
