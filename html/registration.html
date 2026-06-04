@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form class="form-container" onsubmit="signUp(event)">
+      <input
+        type="text"
+        id="signup-firstName"
+        placeholder="your name"
+        name="firstName"
+      />
+      <input
+        type="text"
+        id="signup-lastName"
+        placeholder="your last Name"
+        name="lastName"
+      />
+      <input type="number" id="signup-age" placeholder="your age" name="age" />
+      <input
+        type="email"
+        id="signup-email"
+        placeholder="your email"
+        name="email"
+      />
+      <input
+        type="text"
+        id="signup-password"
+        placeholder="your password"
+        name="password"
+      />
+      <input
+        type="text"
+        id="signup-address"
+        placeholder="address"
+        name="address"
+      />
+      <input type="text" id="signup-phone" placeholder="Phone" name="phone" />
+      <input
+        type="text"
+        id="signup-zipcode"
+        placeholder="zipCode"
+        name="zipcode"
+      />
+      <input
+        type="text"
+        id="signup-avatar"
+        placeholder="avatar"
+        name="avatar"
+      />
+
+      <select id="signup-gender" name="gender">
+        <option value="MALE">MALE</option>
+        <option value="FEMALE">FEMALE</option>
+      </select>
+
+      <button type="submit">Signup</button>
+    </form>
+
+    <script src="../js/registration.js"></script>
+  </body>
+</html>

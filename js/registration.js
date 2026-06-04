@@ -16,23 +16,28 @@ async function signUp(event) {
     avatar: document.getElementById("signup-avatar").value,
     gender: document.getElementById("signup-gender").value,
   };
+  try {
+    const res = await fetch("https://api.everrest.educata.dev/auth/sign_up", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "*/*",
+      },
+      body: JSON.stringify(userData),
+    });
 
-  const res = await fetch("https://api.everrest.educata.dev/auth/sign_up", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-      Accept: "*/*",
-    },
-    body: JSON.stringify(userData),
-  });
+    const data = await res.json();
 
-  const data = await res.json();
+    console.log("STATUS:", res.status);
+    console.log("RESPONSE:", data);
 
-  console.log("STATUS:", res.status);
-  console.log("RESPONSE:", data);
-
-  console.log(data);
-  alert("Signed up successfully");
+    if (!res.ok) {
+      throw new Error(data.errorKeys.join(" "));
+    }
+    sessionStorage.setItem("token", JSON.stringify(data._id));
+  } catch (error) {
+    alert(`Registration is not Succesfull: ${error.message}`);
+  }
 }
 
 //ავტორიზაცია
