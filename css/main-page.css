@@ -2,6 +2,10 @@
   font-family: "signfont";
   src: url(../fonts/Nunito-Italic-VariableFont_wght.ttf);
 }
+@font-face {
+  font-family: "hfonts";
+  src: url(../fonts/BowlbyOne-Regular.ttf) format("opentype");
+}
 
 .products {
   padding-top: 200px;
@@ -40,7 +44,7 @@
   object-fit: contain;
 }
 
-.add-to-cart{
+.add-to-cart {
   margin: auto;
   margin-top: auto;
   padding: 10px 15px;
@@ -79,7 +83,7 @@
   border-radius: 5px;
 }
 
-#not-in-stock{
+#not-in-stock {
   color: red;
   font-size: 14px;
 }
@@ -203,10 +207,74 @@
   font-size: bolder;
 }
 
-
-.brand-drop{
+.brand-drop {
   width: 100%;
   padding: 10px 5px;
   border: none;
-  
+}
+
+#registration-body {
+  width: 100%;
+}
+
+.registration-text {
+  padding-top: 150px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.registration-text p {
+  font-family: "signfont";
+  font-size: 20px;
+}
+
+.registration-text h1 {
+  font-size: clamp(30px, 2vw, 50px);
+  font-family: "hfonts";
+  padding-bottom: 20px;
+  color: #534ab7;
+}
+
+.form-container {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+.form-container input,
+.form-container button,
+.form-container select {
+  padding: 10px;
+  margin: 10px;
+  width: 20%;
+  border-radius: 10px;
+}
+.form-container button {
+  cursor: pointer;
+}
+
+.login-container {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.login-container input,
+.login-container button {
+  padding: 10px;
+  margin: 10px;
+  width: 20%;
+  border-radius: 10px;
+}
+
+.not-an-acc {
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+.signup,
+.signup:visited {
+  color: rgb(214, 44, 44);
 }

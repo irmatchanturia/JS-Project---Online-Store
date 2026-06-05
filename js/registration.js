@@ -1,4 +1,4 @@
-let accessToken = "";
+// let accessToken = "";
 
 //რეგისტრაცია
 async function signUp(event) {
@@ -34,7 +34,10 @@ async function signUp(event) {
     if (!res.ok) {
       throw new Error(data.errorKeys.join(" "));
     }
-    sessionStorage.setItem("token", JSON.stringify(data._id));
+    // sessionStorage.setItem("token", JSON.stringify(data._id));
+    alert("Registration successful!");
+
+    window.location.href = "login.html";
   } catch (error) {
     alert(`Registration is not Succesfull: ${error.message}`);
   }
@@ -42,7 +45,7 @@ async function signUp(event) {
 
 //ავტორიზაცია
 async function signIn(event) {
-  event.preventDefault(); // 🔴 refresh stop
+  event.preventDefault(); // რეფრეშის გაჩერება
 
   const email = document.getElementById("signin-email").value;
   const password = document.getElementById("signin-password").value;
@@ -58,10 +61,11 @@ async function signIn(event) {
 
   const data = await res.json();
 
-  accessToken = data.access_token;
+  // accessToken = data.access_token;
 
   // შენახვა sessionStorage-ში
   sessionStorage.setItem("token", JSON.stringify(data));
+  await getCurrentUser();
 
   console.log(data);
   alert("Signed in successfully");
@@ -73,7 +77,7 @@ async function getCurrentUser() {
   const token = JSON.parse(sessionStorage.getItem("token"))?.access_token;
 
   if (!token) {
-    alert("ჯერ Sign in გააკეთე");
+    alert("You Have to Sign In");
     return;
   }
 

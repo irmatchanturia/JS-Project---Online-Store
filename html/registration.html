@@ -3,52 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main-page.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
     <title>Document</title>
   </head>
-  <body>
+
+  <body id="registration-body">
+    <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
+    <div class="registration-text">
+      <h1>Create Your Account</h1>
+      <p>Join our community and start exploring amazing products today.</p>
+    </div>
     <form class="form-container" onsubmit="signUp(event)">
       <input
         type="text"
         id="signup-firstName"
-        placeholder="your name"
+        placeholder="Your Name"
         name="firstName"
       />
       <input
         type="text"
         id="signup-lastName"
-        placeholder="your last Name"
+        placeholder="Your Last Name"
         name="lastName"
       />
-      <input type="number" id="signup-age" placeholder="your age" name="age" />
+      <input type="number" id="signup-age" placeholder="Your Age" name="age" />
       <input
         type="email"
         id="signup-email"
-        placeholder="your email"
+        placeholder="Your Email"
         name="email"
       />
       <input
         type="text"
         id="signup-password"
-        placeholder="your password"
+        placeholder="Your Password"
         name="password"
       />
       <input
         type="text"
         id="signup-address"
-        placeholder="address"
+        placeholder="Address"
         name="address"
       />
       <input type="text" id="signup-phone" placeholder="Phone" name="phone" />
       <input
         type="text"
         id="signup-zipcode"
-        placeholder="zipCode"
+        placeholder="Zip Code"
         name="zipcode"
       />
       <input
         type="text"
         id="signup-avatar"
-        placeholder="avatar"
+        placeholder="Avatar"
         name="avatar"
       />
 
@@ -57,9 +67,34 @@
         <option value="FEMALE">FEMALE</option>
       </select>
 
-      <button type="submit">Signup</button>
+      <button type="submit">Sign Up</button>
     </form>
+    <p class="not-an-acc">Already have an account? <a href="login.html" class="signup">Log In!</a></p>
+
+     <button onclick="getCurrentUser()">Get current User</button>
+    <div id="user-info"></div>
+    <div id="footer"></div>
 
     <script src="../js/registration.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          });
+      });
+    </script>
+
+    <script>
+      async function loadFooter() {
+        const response = await fetch("footer.html");
+        const footerHTML = await response.text();
+
+        document.getElementById("footer").innerHTML = footerHTML;
+      }
+
+      loadFooter();
+    </script>
   </body>
 </html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main-page.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
+    <div class="registration-text">
+      <h1>Welcome to DigitalStore!</h1>
+      <p>
+        Discover the latest technology and find the perfect products for your
+        needs.
+      </p>
+    </div>
+    <form class="login-container" onsubmit="signIn(event)">
+      <input
+        type="email"
+        id="signin-email"
+        placeholder="Your Email"
+        name="email"
+      />
+      <input
+        type="text"
+        id="signin-password"
+        placeholder="Your Password"
+        name="password"
+      />
+      <button>Log In</button>
+    </form>
+    <p class="not-an-acc">Don't have an account? <a href="registration.html" class="signup">Sign Up!</a></p>
+     <!-- <button onclick="getCurrentUser()">Get current User</button> -->
+    <div id="user-info"></div>
+    <div id="footer"></div>
+
+    <script src="../js/registration.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          });
+      });
+    </script>
+
+    <script>
+      async function loadFooter() {
+        const response = await fetch("footer.html");
+        const footerHTML = await response.text();
+
+        document.getElementById("footer").innerHTML = footerHTML;
+      }
+
+      loadFooter();
+    </script>
+  </body>
+</html>
