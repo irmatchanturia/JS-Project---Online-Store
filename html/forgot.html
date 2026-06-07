@@ -11,36 +11,22 @@
   </head>
   <body>
     <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
-    <div class="registration-text">
-      <h1>Welcome to DigitalStore!</h1>
-      <p>
-        Discover the latest technology and find the perfect products for your
-        needs.
-      </p>
-    </div>
-    <form class="login-container" onsubmit="signIn(event)">
+    <p class="forg-text">Forgot Your Password?
+        Recover it Here!
+    </p>
+    <form class="recover" onsubmit="recovery(event)">
       <input
         type="email"
-        id="signin-email"
+        id="recovery-email"
         placeholder="Your Email"
         name="email"
       />
-      <input
-        type="text"
-        id="signin-password"
-        placeholder="Your Password"
-        name="password"
-      />
-      <button>Log In</button>
+      <button>Recover</button>
     </form>
-    <p class="not-an-acc">
-      Don't have an account? <a href="signup.html" class="signup">Sign Up!</a>
-    </p>
-    <p class="forgot"><a href="forgot.html">Forgot a Password?</a></p>
-    <div id="user-info"></div>
+
     <div id="footer"></div>
 
-    <script src="../js/signup.js"></script>
+    <script src="../js/forgot.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         fetch("header.html")

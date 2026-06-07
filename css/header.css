@@ -34,11 +34,11 @@
 
 .sign-log a {
   color: rgb(26, 31, 31);
+  padding: 10px;
 }
 .sign-log a:hover {
   background-color: white;
   border-radius: 10px;
-  padding: 10px;
 }
 
 .search-bar {
@@ -56,11 +56,10 @@ header {
   padding-right: 5%;
 }
 
-#search-icon{
+#search-icon {
   transform: translateX(-50px);
 }
 
-#store{
-  color: #534AB7;
+#store {
+  color: #534ab7;
 }
-

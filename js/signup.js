@@ -49,52 +49,30 @@ async function signIn(event) {
 
   const email = document.getElementById("signin-email").value;
   const password = document.getElementById("signin-password").value;
+  try {
+    const res = await fetch("https://api.everrest.educata.dev/auth/sign_in", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "*/*",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-  const res = await fetch("https://api.everrest.educata.dev/auth/sign_in", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-      Accept: "*/*",
-    },
-    body: JSON.stringify({ email, password }),
-  });
+    const data = await res.json();
 
-  const data = await res.json();
+    // accessToken = data.access_token;
 
-  // accessToken = data.access_token;
-
-  // შენახვა sessionStorage-ში
-  sessionStorage.setItem("token", JSON.stringify(data));
-  await getCurrentUser();
-
-  console.log(data);
-  alert("Signed in successfully");
-}
-
-//current user-ზე წვდომა token-ის საშალებით
-async function getCurrentUser() {
-  // token ყოველთვის აქედან ვიღებთ
-  const token = JSON.parse(sessionStorage.getItem("token"))?.access_token;
-
-  if (!token) {
-    alert("You Have to Sign In");
-    return;
+    if (!res.ok) {
+      throw new Error(data.errorKeys.join(" "));
+    }
+    // შენახვა sessionStorage-ში
+    sessionStorage.setItem("token", JSON.stringify(data));
+    // await getCurrentUser();
+    // console.log(data);
+    alert("Signed in successfully");
+    window.location.href = "main-page.html";
+  } catch (error) {
+    alert(`Sign in is not Succesfull: ${error.message}`);
   }
-
-  const res = await fetch("https://api.everrest.educata.dev/auth", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-    },
-  });
-
-  const user = await res.json();
-
-  document.getElementById("user-info").innerHTML = `
-    <p>Name: ${user.firstName}</p>
-    <p>Email: ${user.email}</p>
-    <p>Age: ${user.age}</p>
-  `;
-
-  console.log(user);
 }

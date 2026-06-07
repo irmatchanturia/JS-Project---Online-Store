@@ -108,7 +108,7 @@
 .main-class {
   display: flex;
   justify-content: space-between;
-  padding-top: 150px;
+  padding-top: 30px;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -271,10 +271,46 @@
 
 .not-an-acc {
   text-align: center;
-  padding-bottom: 100px;
 }
 
 .signup,
 .signup:visited {
   color: rgb(214, 44, 44);
+}
+
+#welcome-message {
+  padding-top: 130px;
+  text-align: center;
+  font-family: "signfont";
+  font-size: 30px;
+}
+
+.forgot,
+.forgot a:visited {
+  text-decoration: underline;
+  text-align: center;
+  color: blue;
+}
+
+.recover {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.recover input,
+.recover button {
+  margin: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 320px;
+}
+
+.forg-text {
+  padding-top: 120px;
+  padding-bottom: 50px;
+  font-family: "signfont";
+  font-size: 30px;
+  text-align: center;
 }
