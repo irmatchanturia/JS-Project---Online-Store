@@ -63,3 +63,7 @@ header {
 #store {
   color: #534ab7;
 }
+
+.logout{
+  display: none;
+}

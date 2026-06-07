@@ -6,7 +6,6 @@ async function getCurrentUser() {
   const token = JSON.parse(sessionStorage.getItem("token"))?.access_token;
 
   if (!token) {
-    alert("shit aint sweet")
     return;
   }
 

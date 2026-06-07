@@ -290,6 +290,8 @@
   text-decoration: underline;
   text-align: center;
   color: blue;
+  margin-bottom: 40px;
+  padding-top: 10px;
 }
 
 .recover {

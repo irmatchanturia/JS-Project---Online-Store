@@ -1,0 +1,21 @@
+function setUpHeader() {
+  const token = JSON.parse(sessionStorage.getItem("token"))?.access_token;
+  const logOut = document.getElementsByClassName("logout")[0];
+  const logIn = document.getElementsByClassName("login")[0];
+  const signUp = document.getElementsByClassName("signupsec")[0];
+  if (token) {
+    logOut.style.display = "inline-block";
+    logIn.style.display = "none";
+    signUp.style.display = "none";
+  } else {
+    logOut.style.display = "none";
+    logIn.style.display = "inline-block";
+    signUp.style.display = "inline-block";
+  }
+}
+
+function logOut() {
+  sessionStorage.removeItem("token");
+  setUpHeader()
+  welcomeMessage.innerHTML = ``;
+}
