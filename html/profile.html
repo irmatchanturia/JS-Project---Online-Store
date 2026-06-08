@@ -22,7 +22,7 @@
           <h3>Personal Information</h3>
           <p>Update your personal details and keep your information current.</p>
         </div>
-        <form class="update-info">
+        <form class="update-info" id="update-form">
           <input
             type="text"
             id="update-firstName"
@@ -89,7 +89,7 @@
           <h3>Change Password</h3>
           <p>Choose a strong password to keep your account secure.</p>
         </div>
-        <form class="update-info">
+        <form class="update-info" id="change-password-form">
           <div class="password-field">
             <input
               type="password"
@@ -106,19 +106,10 @@
               name="newPassword"
             />
           </div>
-          <div class="password-field">
-            <!-- <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm New Password"
-              name="confirmPassword"
-            /> -->
-          </div>
           <button type="submit">Change Password</button>
         </form>
       </div>
 
-      <!-- Danger Zone -->
       <div class="profile-card">
         <div class="update-text">
           <h3 style="color: #dc2626">Danger Zone</h3>
@@ -128,7 +119,9 @@
           <strong>Warning:</strong> This action cannot be undone. All your data
           will be permanently deleted.
         </div>
-        <button type="button" class="btn-danger">🗑 Delete My Account</button>
+        <button type="button" class="btn-danger" id="delete-form">
+          🗑 Delete My Account
+        </button>
       </div>
     </div>
 
@@ -159,5 +152,6 @@
     <script src="../js/AI.js"></script>
     <script src="../js/userinfo.js"></script>
     <script src="../js/header.js"></script>
+    <script src="../js/profile.js"></script>
   </body>
 </html>
