@@ -76,7 +76,7 @@
     <button onclick="getCurrentUser()">Get current User</button>
     <div id="user-info"></div>
     <div id="footer"></div>
-
+    <script src="../js/header.js"></script>
     <script src="../js/signup.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -84,6 +84,7 @@
           .then((res) => res.text())
           .then((data) => {
             document.getElementById("header").innerHTML = data;
+            setUpHeader();
           });
       });
     </script>

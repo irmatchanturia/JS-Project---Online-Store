@@ -23,7 +23,7 @@
     </form>
 
     <div id="footer"></div>
-
+    <script src="../js/header.js"></script>
     <script src="../js/forgot.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -31,6 +31,7 @@
           .then((res) => res.text())
           .then((data) => {
             document.getElementById("header").innerHTML = data;
+            setUpHeader();
           });
       });
     </script>

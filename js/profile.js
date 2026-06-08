@@ -86,7 +86,8 @@ document.getElementById("delete-form").addEventListener("click", function () {
         alert(data.error);
       } else {
         alert("Your Account is Deleted!");
-        window.location.href = "index.html";
+        sessionStorage.removeItem("token");
+        window.location.href = "main-page.html";
       }
     });
 });

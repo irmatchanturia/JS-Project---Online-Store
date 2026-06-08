@@ -20,6 +20,7 @@ async function recovery(event) {
 
     if (res.ok) {
       alert("Recovery email sent!");
+      window.location.href = "login.html";
     } else {
       alert(data.message || "Something went wrong");
     }

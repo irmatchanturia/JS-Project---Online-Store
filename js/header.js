@@ -20,5 +20,8 @@ function setUpHeader() {
 function logOut() {
   sessionStorage.removeItem("token");
   setUpHeader();
-  welcomeMessage.innerHTML = ``;
+  if (welcomeMessage) {
+    welcomeMessage.innerHTML = ``;
+  }
+  window.location.href = "main-page.html";
 }
