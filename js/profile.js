@@ -1,0 +1,1 @@
+https://api.everrest.educata.dev/auth/update

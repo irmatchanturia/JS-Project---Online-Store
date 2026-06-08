@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main-page.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
+
+    <div class="profile-head">
+      <h1>My Profile</h1>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-card">
+        <div class="update-text">
+          <h3>Personal Information</h3>
+          <p>Update your personal details and keep your information current.</p>
+        </div>
+        <form class="update-info">
+          <input
+            type="text"
+            id="update-firstName"
+            placeholder="Your Name"
+            name="firstName"
+          />
+          <input
+            type="text"
+            id="update-lastName"
+            placeholder="Your Last Name"
+            name="lastName"
+          />
+          <input
+            type="number"
+            id="update-age"
+            placeholder="Your Age"
+            name="age"
+          />
+          <input
+            type="email"
+            id="update-email"
+            placeholder="Your Email"
+            name="email"
+          />
+          <input
+            type="text"
+            id="update-password"
+            placeholder="Your Password"
+            name="password"
+          />
+          <input
+            type="text"
+            id="update-address"
+            placeholder="Address"
+            name="address"
+          />
+          <input
+            type="text"
+            id="update-phone"
+            placeholder="Phone"
+            name="phone"
+          />
+          <input
+            type="text"
+            id="update-zipcode"
+            placeholder="Zip Code"
+            name="zipcode"
+          />
+          <input
+            type="text"
+            id="update-avatar"
+            placeholder="Avatar"
+            name="avatar"
+          />
+          <select id="update-gender" name="gender">
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+          </select>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+      <div class="profile-card">
+        <div class="update-text">
+          <h3>Change Password</h3>
+          <p>Choose a strong password to keep your account secure.</p>
+        </div>
+        <form class="update-info">
+          <div class="password-field">
+            <input
+              type="password"
+              id="current-password"
+              placeholder="Current Password"
+              name="currentPassword"
+            />
+          </div>
+          <div class="password-field">
+            <input
+              type="password"
+              id="new-password"
+              placeholder="New Password"
+              name="newPassword"
+            />
+          </div>
+          <div class="password-field">
+            <!-- <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm New Password"
+              name="confirmPassword"
+            /> -->
+          </div>
+          <button type="submit">Change Password</button>
+        </form>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="profile-card">
+        <div class="update-text">
+          <h3 style="color: #dc2626">Danger Zone</h3>
+          <p>Permanently delete your account and all of your data.</p>
+        </div>
+        <div class="danger-zone-warning">
+          <strong>Warning:</strong> This action cannot be undone. All your data
+          will be permanently deleted.
+        </div>
+        <button type="button" class="btn-danger">🗑 Delete My Account</button>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+            setUpHeader();
+          });
+      });
+    </script>
+
+    <script>
+      async function loadFooter() {
+        const response = await fetch("footer.html");
+        const footerHTML = await response.text();
+        document.getElementById("footer").innerHTML = footerHTML;
+      }
+      loadFooter();
+    </script>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/slider.js"></script>
+    <script src="../js/AI.js"></script>
+    <script src="../js/userinfo.js"></script>
+    <script src="../js/header.js"></script>
+  </body>
+</html>

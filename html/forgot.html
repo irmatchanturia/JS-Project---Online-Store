@@ -11,9 +11,7 @@
   </head>
   <body>
     <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
-    <p class="forg-text">Forgot Your Password?
-        Recover it Here!
-    </p>
+    <p class="forg-text">Forgot Your Password? Recover it Here!</p>
     <form class="recover" onsubmit="recovery(event)">
       <input
         type="email"
@@ -41,10 +39,8 @@
       async function loadFooter() {
         const response = await fetch("footer.html");
         const footerHTML = await response.text();
-
         document.getElementById("footer").innerHTML = footerHTML;
       }
-
       loadFooter();
     </script>
   </body>

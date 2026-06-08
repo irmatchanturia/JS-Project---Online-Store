@@ -66,4 +66,10 @@ header {
 
 .logout{
   display: none;
+  cursor: pointer;
 }
+
+.profile{
+  cursor: pointer;
+}
+

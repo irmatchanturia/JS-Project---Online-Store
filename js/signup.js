@@ -35,8 +35,6 @@ async function signUp(event) {
       throw new Error(data.errorKeys.join(" "));
     }
     // sessionStorage.setItem("token", JSON.stringify(data._id));
-    alert("Registration successful!");
-
     window.location.href = "login.html";
   } catch (error) {
     alert(`Registration is not Succesfull: ${error.message}`);
@@ -68,9 +66,6 @@ async function signIn(event) {
     }
     // შენახვა sessionStorage-ში
     sessionStorage.setItem("token", JSON.stringify(data));
-    // await getCurrentUser();
-    // console.log(data);
-    alert("Signed in successfully");
     window.location.href = "main-page.html";
   } catch (error) {
     alert(`Sign in is not Succesfull: ${error.message}`);
