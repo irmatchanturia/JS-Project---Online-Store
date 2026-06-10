@@ -11,6 +11,7 @@ let request = {
   rating: undefined,
   price_min: undefined,
   price_max: undefined,
+  keywords: undefined,
 };
 
 //ვიძახებთ პროდუქტების პირველ გვერდს
@@ -40,17 +41,21 @@ function getProducts() {
   if (request["price_max"] != undefined) {
     url += "&price_max=" + request.price_max;
   }
+  if (request["keywords"] != undefined && request["keywords"] != "") {
+    url += "&keywords=" + request.keywords;
+  }
+
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       handlePagination(data, index);
-      let allProducts = data.products;
+      allProducts = data.products;
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
       });
     });
 }
+
 //პაგინაციის დაჰენდვლა - ამ ფუნქციაში განსაზღვრული გვაქვს ცვლადი, რომელიც პროდუქტების მთელ რაოდენობას
 //ყოფს თითო გვერდზე რამდენი პროდუქტიც მინდა მაგაზე. შედეგად ვიღებთ შვიდ გვერდს, თითოეულზე 6 პროდუქტით.
 //
@@ -68,38 +73,47 @@ function handlePagination(data, index) {
 
 function productHtml(item) {
   return `
- <div class="product">
-  <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
-  <div class="info">
-    <p class="title">${item.title}</p>
+    <div class="product">
+      <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
 
-    <div class="rating">
-      <p>${getStar(item.rating)}</p>
-      ${
-        item.stock > 0
-          ? `<p>(${item.stock})</p>`
-          : `<p id="not-in-stock"> Not in Stock</p>`
-      }
-      
-    </div>
-    <div class="price">
-      <p class="price current-price">${item.price.current}$</p>
+      <div class="info">
+        <p class="title">${item.title}</p>
 
-      ${
-        item.price.current !== item.price.beforeDiscount
-          ? `<p class="price before-discount">${item.price.beforeDiscount}$</p>`
-          : ""
-      }
-      ${
-        item.price.discountPercentage > 0
-          ? `<p class="price" id="discount-percentage">${item.price.discountPercentage}%</p>`
-          : ""
-      }
+        <div class="rating">
+          <p>${getStar(item.rating)}</p>
+          ${
+            item.stock > 0
+              ? `<p>(${item.stock})</p>`
+              : `<p id="not-in-stock">Not in Stock</p>`
+          }
+        </div>
+
+        <div class="price">
+          <p class="price current-price">${item.price.current}$</p>
+
+          ${
+            item.price.current !== item.price.beforeDiscount
+              ? `<p class="price before-discount">${item.price.beforeDiscount}$</p>`
+              : ""
+          }
+
+          ${
+            item.price.discountPercentage > 0
+              ? `<p class="price" id="discount-percentage">${item.price.discountPercentage}%</p>`
+              : ""
+          }
+        </div>
+
+        ${
+          item.stock > 0
+            ? `<button class="add-to-cart" onclick="addProductToCart('${item._id}')">
+                Add to Cart
+               </button>`
+            : ""
+        }
+      </div>
     </div>
-  </div>
-  <button class="add-to-cart" id = ${item}>Add to Cart</button>
-</div>
-`;
+  `;
 }
 
 //დაკლიკებაზე რეაგირების ფუნქცია
@@ -180,6 +194,7 @@ function capitalizeBrandName(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+//ბრენდების წამოღება
 function getBrands() {
   fetch("https://api.everrest.educata.dev/shop/products/brands")
     .then((response) => response.json())
@@ -202,4 +217,43 @@ function addBrandSelectorListener() {
   });
 }
 
-function addToCart() {}
+//სერჩის ამუშავების მცდელობა
+
+function Search() {
+  const searchBar = document.querySelector(".search-bar");
+  if (!searchBar) return;
+  searchBar.addEventListener("input", () => {
+    request.keywords = searchBar.value;
+    index = 1;
+    getProducts();
+  });
+}
+
+//კალათა
+async function addProductToCart(id) {
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    console.log("No token found");
+    return;
+  }
+  const response = await fetch(
+    "https://api.everrest.educata.dev/shop/cart/product",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id: id,
+        quantity: 1,
+      }),
+    },
+  );
+  const data = await response.json();
+  if (!response.ok) {
+    console.log("Error:", data);
+    return;
+  }
+  console.log("Added to cart:", data);
+}

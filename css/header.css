@@ -36,7 +36,7 @@
   color: rgb(26, 31, 31);
   padding: 10px;
 }
-.sign-log a:hover {
+.sign-log a:hover{
   background-color: white;
   border-radius: 10px;
 }
@@ -72,4 +72,10 @@ header {
 .profile{
   cursor: pointer;
 }
-
+.shopping-cart{
+  max-width: 30px;
+  max-height: 30px;
+  cursor: pointer;
+  display: none;
+  
+}

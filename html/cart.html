@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main-page.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/cart.css">
+  </head>
+  <body>
+    <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
+
+    <h1 class="cart-head">Shopping Cart</h1>
+
+    <div class="products">
+    </div>
+
+    <div id="footer"></div>
+    <script src="../js/header.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+            setUpHeader();
+            Search();
+          });
+      });
+    </script>
+
+    <script>
+      async function loadFooter() {
+        const response = await fetch("footer.html");
+        const footerHTML = await response.text();
+
+        document.getElementById("footer").innerHTML = footerHTML;
+      }
+
+      loadFooter();
+    </script>
+  </body>
+</html>

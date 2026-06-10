@@ -1,7 +1,7 @@
 let welcomeMessage = document.getElementById("welcome-message");
 
 async function getCurrentUser() {
-  const token = JSON.parse(sessionStorage.getItem("token"))?.access_token;
+  const token = sessionStorage.getItem("token");
 
   if (!token) {
     return;

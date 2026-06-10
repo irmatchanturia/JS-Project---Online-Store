@@ -1,12 +1,14 @@
 function setUpHeader() {
-  const token = JSON.parse(sessionStorage.getItem("token"))?.access_token;
+  const token = sessionStorage.getItem("token");
   const logOut = document.getElementsByClassName("logout")[0];
   const logIn = document.getElementsByClassName("login")[0];
   const signUp = document.getElementsByClassName("signupsec")[0];
   const myProfile = document.getElementsByClassName("profile")[0];
+  const shoppingCart = document.getElementsByClassName("shopping-cart")[0];
   if (token) {
     logOut.style.display = "inline-block";
     myProfile.style.display = "inline-block";
+    shoppingCart.style.display = "inline-block";
     logIn.style.display = "none";
     signUp.style.display = "none";
   } else {
@@ -14,6 +16,7 @@ function setUpHeader() {
     logIn.style.display = "inline-block";
     signUp.style.display = "inline-block";
     myProfile.style.display = "none";
+    shoppingCart.style.display = "none";
   }
 }
 

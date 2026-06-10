@@ -65,7 +65,7 @@ async function signIn(event) {
       throw new Error(data.errorKeys.join(" "));
     }
     // შენახვა sessionStorage-ში
-    sessionStorage.setItem("token", JSON.stringify(data));
+    sessionStorage.setItem("token", data.access_token);
     window.location.href = "main-page.html";
   } catch (error) {
     alert(`Sign in is not Succesfull: ${error.message}`);

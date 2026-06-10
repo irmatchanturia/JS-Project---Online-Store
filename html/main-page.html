@@ -24,7 +24,9 @@
           <h4>Categories</h4>
         </div>
         <div class="side-bar-categories"></div>
-        <div class="side-bar-brands"></div>
+        <div class="side-bar-brands">
+          <div class="side-bar-rating"></div>
+        </div>
         <div class="filter-price">
           <div id="slider"></div>
           <div class="prices">
@@ -45,7 +47,11 @@
     <div id="result"></div>
 
     <div id="footer"></div>
-
+    <script src="../js/script.js"></script>
+    <script src="../js/slider.js"></script>
+    <script src="../js/AI.js"></script>
+    <script src="../js/userinfo.js"></script>
+    <script src="../js/header.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         fetch("header.html")
@@ -53,6 +59,7 @@
           .then((data) => {
             document.getElementById("header").innerHTML = data;
             setUpHeader();
+            Search();
           });
       });
     </script>
@@ -67,10 +74,5 @@
 
       loadFooter();
     </script>
-    <script src="../js/script.js"></script>
-    <script src="../js/slider.js"></script>
-    <script src="../js/AI.js"></script>
-    <script src="../js/userinfo.js"></script>
-    <script src="../js/header.js"></script>
   </body>
 </html>
