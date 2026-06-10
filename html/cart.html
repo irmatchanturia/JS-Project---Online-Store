@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/main-page.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/footer.css"/>
+    <link rel="stylesheet" href="../css/main-page.css">
+    <link rel="stylesheet" href="../css/cart.css" />
   </head>
   <body>
     <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
-
-    <h1 class="cart-head">Shopping Cart</h1>
-
-    <div class="products">
+    <div class="cart-head">
+      <h1>Your Cart</h1>
+      <a href="main-page.html">⬅ Continue Shopping</a>
     </div>
-
+    <div class="cart">
+      <div class="cart-products"></div>
+      <div class="cart-side">
+        <h4>Order Summery</h4>
+        <p>Subtotal</p>
+        <p>Discount</p>
+        <h5>Total</h5>
+        <h6>You Saved $$$$</h6>
+        <a href="">Secure Checkout</a>
+        <div class="cart-payment"></div>
+      </div>
+    </div>
     <div id="footer"></div>
     <script src="../js/header.js"></script>
     <script src="../js/cart.js"></script>

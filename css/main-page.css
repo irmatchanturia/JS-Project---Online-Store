@@ -316,3 +316,102 @@
   font-size: 30px;
   text-align: center;
 }
+
+/* ტაბლეტზე */
+@media (max-width: 1024px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main-class {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side-bar {
+    width: 90%;
+  }
+
+  .form-container input,
+  .form-container button,
+  .form-container select {
+    width: 50%;
+  }
+
+  .login-container input,
+  .login-container button {
+    width: 50%;
+  }
+}
+
+/* ტელეფოონზე */
+@media (max-width: 768px) {
+  .products {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .product {
+    width: 100%;
+  }
+
+  .main-class {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .side-bar {
+    width: 100%;
+  }
+
+  .category {
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+}
+
+/* პატარა ტელეფონზე */
+@media (max-width: 480px) {
+  .products {
+    padding: 10px;
+  }
+
+  .product {
+    min-height: auto;
+  }
+
+  .add-to-cart {
+    width: 80%;
+  }
+
+  .form-container input,
+  .form-container button,
+  .form-container select,
+  .login-container input,
+  .login-container button {
+    width: 80%;
+  }
+
+  .registration-text p {
+    font-size: 16px;
+  }
+
+  .registration-text h1 {
+    font-size: 26px;
+  }
+
+  .forg-text {
+    font-size: 22px;
+  }
+
+  .pagination p {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

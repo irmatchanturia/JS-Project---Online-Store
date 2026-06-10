@@ -1,4 +1,4 @@
-const cartProducts = document.getElementsByClassName("products")[0];
+const cartProducts = document.getElementsByClassName("cart-products")[0];
 
 const token = sessionStorage.getItem("token");
 async function getCart() {
@@ -17,7 +17,7 @@ async function getCart() {
   fetchProducts(data.products);
 }
 getCart();
-
+        
 function fetchProducts(products) {
   products.forEach((product) => {
     fetch(
@@ -33,10 +33,10 @@ function fetchProducts(products) {
 
 function productHtml(item) {
   return `
-    <div class="product">
+    <div class="cart-product">
       <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
 
-      <div class="info">
+      <div class="cart-info">
         <p class="title">${item.title}</p>
 
         <div class="rating">
@@ -48,25 +48,25 @@ function productHtml(item) {
           }
         </div>
 
-        <div class="price">
-          <p class="price current-price">${item.price.current}$</p>
+        <div class="cart-price">
+          <p class="price cart-current-price">${item.price.current}$</p>
 
           ${
             item.price.current !== item.price.beforeDiscount
-              ? `<p class="price before-discount">${item.price.beforeDiscount}$</p>`
+              ? `<p class="price cart-before-discount">${item.price.beforeDiscount}$</p>`
               : ""
           }
 
           ${
             item.price.discountPercentage > 0
-              ? `<p class="price" id="discount-percentage">${item.price.discountPercentage}%</p>`
+              ? `<p class="price" id="cart-discount-percentage">${item.price.discountPercentage}%</p>`
               : ""
           }
         </div>
 
         ${
           item.stock > 0
-            ? `<button class="add-to-cart" onclick="addProductToCart('${item._id}')">
+            ? `<button class="cart-add-to-cart" onclick="addProductToCart('${item._id}')">
                 Add to Cart
                </button>`
             : ""

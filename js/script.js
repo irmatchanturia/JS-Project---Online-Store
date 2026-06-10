@@ -221,6 +221,7 @@ function addBrandSelectorListener() {
 
 function Search() {
   const searchBar = document.querySelector(".search-bar");
+  pagination.innerHTML = ""; //პაგინაციების სექციის დაცარიელება
   if (!searchBar) return;
   searchBar.addEventListener("input", () => {
     request.keywords = searchBar.value;
@@ -257,3 +258,4 @@ async function addProductToCart(id) {
   }
   console.log("Added to cart:", data);
 }
+

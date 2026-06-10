@@ -28,3 +28,11 @@ function logOut() {
   }
   window.location.href = "main-page.html";
 }
+
+//ბურგერ მენიუ
+const burger = document.getElementById("burger");
+const headerSecond = document.querySelector(".header-second-line");
+
+burger.addEventListener("click", () => {
+  headerSecond.classList.toggle("active");
+});

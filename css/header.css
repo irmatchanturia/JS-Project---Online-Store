@@ -36,7 +36,7 @@
   color: rgb(26, 31, 31);
   padding: 10px;
 }
-.sign-log a:hover{
+.sign-log a:hover {
   background-color: white;
   border-radius: 10px;
 }
@@ -64,18 +64,55 @@ header {
   color: #534ab7;
 }
 
-.logout{
+.logout {
   display: none;
   cursor: pointer;
 }
 
-.profile{
+.profile {
   cursor: pointer;
 }
-.shopping-cart{
+.shopping-cart {
   max-width: 30px;
   max-height: 30px;
   cursor: pointer;
   display: none;
-  
+}
+
+.burger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 9999;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .header-second-line {
+    position: relative;
+  }
+
+  .sign-log {
+    display: none;
+  }
+
+  .search-bar {
+    width: 70%;
+  }
+
+  .header-second-line.active .sign-log {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
 }
