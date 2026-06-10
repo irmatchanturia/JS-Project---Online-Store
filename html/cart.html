@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/footer.css"/>
-    <link rel="stylesheet" href="../css/main-page.css">
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/main-page.css" />
     <link rel="stylesheet" href="../css/cart.css" />
   </head>
   <body>
@@ -16,16 +16,43 @@
       <a href="main-page.html">⬅ Continue Shopping</a>
     </div>
     <div class="cart">
-      <div class="cart-products"></div>
-      <div class="cart-side">
-        <h4>Order Summery</h4>
-        <p>Subtotal</p>
-        <p>Discount</p>
-        <h5>Total</h5>
-        <h6>You Saved $$$$</h6>
-        <a href="">Secure Checkout</a>
-        <div class="cart-payment"></div>
-      </div>
+  <div class="cart-products"></div>
+
+  <div class="cart-side">
+    <h4>Order Summary</h4>
+
+    <div class="summary-row">
+      <p>Subtotal</p>
+      <span>$0</span>
+    </div>
+
+    <div class="summary-row">
+      <p>Discount</p>
+      <span class="discount">-$0</span>
+    </div>
+
+    <div class="summary-row">
+      <p>Tax</p>
+      <span>$0</span>
+    </div>
+
+    <div class="summary-total">
+      <h5>Total</h5>
+      <span>$0</span>
+    </div>
+
+    <p class="saved">You Saved $0</p>
+
+    <a class="checkout-btn" href="#">Secure Checkout</a>
+
+    <div class="cart-payment">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" />
+    </div>
+  </div>
+</div>
     </div>
     <div id="footer"></div>
     <script src="../js/header.js"></script>

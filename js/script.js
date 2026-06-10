@@ -104,13 +104,15 @@ function productHtml(item) {
           }
         </div>
 
-        ${
-          item.stock > 0
-            ? `<button class="add-to-cart" onclick="addProductToCart('${item._id}')">
-                Add to Cart
-               </button>`
-            : ""
-        }
+       ${
+         item.stock > 0
+           ? `<button class="add-to-cart" onclick="addProductToCart('${item._id}')">
+               Add to Cart
+              </button>`
+           : `<button class="add-to-cart" disabled>
+                Out of Stock
+              </button>`
+       }
       </div>
     </div>
   `;
@@ -258,4 +260,3 @@ async function addProductToCart(id) {
   }
   console.log("Added to cart:", data);
 }
-

@@ -17,7 +17,7 @@ async function getCart() {
   fetchProducts(data.products);
 }
 getCart();
-        
+
 function fetchProducts(products) {
   products.forEach((product) => {
     fetch(
@@ -34,43 +34,62 @@ function fetchProducts(products) {
 function productHtml(item) {
   return `
     <div class="cart-product">
-      <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
+
+      <div class="cart-left">
+        <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
+      </div>
 
       <div class="cart-info">
+
         <p class="title">${item.title}</p>
 
         <div class="rating">
-          <p>${getStar(item.rating)}</p>
+          <div class="stars">${getStar(item.rating)}</div>
           ${
             item.stock > 0
-              ? `<p>(${item.stock})</p>`
-              : `<p id="not-in-stock">Not in Stock</p>`
+              ? `<span class="stock">(${item.stock})</span>`
+              : `<span class="out">Not in Stock</span>`
           }
         </div>
 
-        <div class="cart-price">
-          <p class="price cart-current-price">${item.price.current}$</p>
+        <div class="bottom-row">
 
-          ${
-            item.price.current !== item.price.beforeDiscount
-              ? `<p class="price cart-before-discount">${item.price.beforeDiscount}$</p>`
-              : ""
-          }
+          <div class="cart-price">
+            <p class="current">$${item.price.current}</p>
 
-          ${
-            item.price.discountPercentage > 0
-              ? `<p class="price" id="cart-discount-percentage">${item.price.discountPercentage}%</p>`
-              : ""
-          }
+            ${
+              item.price.current !== item.price.beforeDiscount
+                ? `<p class="before">$${item.price.beforeDiscount}</p>`
+                : ""
+            }
+
+            ${
+              item.price.discountPercentage > 0
+                ? `<p class="discount">-${item.price.discountPercentage}%</p>`
+                : ""
+            }
+          </div>
+
+          <div class="qty">
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+          </div>
+
+          <button class="trash">
+            🗑
+          </button>
+
         </div>
 
         ${
           item.stock > 0
-            ? `<button class="cart-add-to-cart" onclick="addProductToCart('${item._id}')">
+            ? `<button class="add-btn" onclick="addProductToCart('${item._id}')">
                 Add to Cart
-               </button>`
+              </button>`
             : ""
         }
+
       </div>
     </div>
   `;
