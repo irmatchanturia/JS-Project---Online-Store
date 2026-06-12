@@ -25,13 +25,13 @@ function fetchProducts(products) {
     )
       .then((response) => response.json())
       .then((data) => {
-        cartProducts.innerHTML += productHtml(data);
+        cartProducts.innerHTML += productHtml(data, product);
         console.log(data);
       });
   });
 }
 
-function productHtml(item) {
+function productHtml(item, cartItem) {
   return `
     <div class="cart-product">
 
@@ -71,14 +71,14 @@ function productHtml(item) {
           </div>
 
           <div class="qty">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+            <button onclick="decreaseQuantity('${cartItem.productId}')">-</button>
+            <span>${cartItem.quantity}</span>
+            <button onclick="increaseQuantity('${cartItem.productId}')">+</button>
           </div>
 
-          <button class="trash">
-            🗑
-          </button>
+        <button class="trash" onclick="removeFromCart('${cartItem.productId}')">
+          🗑
+        </button>
 
         </div>
 
@@ -102,4 +102,87 @@ function getStar(num) {
     stars += `<i class="fa-solid fa-star"></i>`;
   }
   return stars;
+}
+// https://api.everrest.educata.dev/shop/cart/product
+
+async function removeFromCart(id) {
+  const response = await fetch(
+    "https://api.everrest.educata.dev/shop/cart/product",
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    },
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    console.log("Error:", data);
+    return;
+  }
+
+  cartProducts.innerHTML = "";
+  getCart();
+}
+
+//პროდუქტის რაოდენობის გაზრდა
+async function increaseQuantity(productId) {
+  const response = await fetch(
+    "https://api.everrest.educata.dev/shop/cart/product",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id: productId,
+        quantity: 1, // +1
+      }),
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    console.log("Increase error:", data);
+    return;
+  }
+
+  cartProducts.innerHTML = "";
+  getCart();
+}
+
+//პროდუქტის რაოდენობის შემცირება
+async function decreaseQuantity(productId) {
+  const response = await fetch(
+    "https://everrest.educata.dev/shop/cart/product",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id: productId,
+        quantity: -1, // -1
+      }),
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    console.log("Decrease error:", data);
+    return;
+  }
+
+  cartProducts.innerHTML = "";
+  getCart();
 }
