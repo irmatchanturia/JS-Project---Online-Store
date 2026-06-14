@@ -72,9 +72,9 @@ function productHtml(item, cartItem) {
           </div>
 
           <div class="qty">
-            <button onclick="decreaseQuantity('${cartItem.productId}')">-</button>
+            <button onclick="changeQuantity('${cartItem.productId}', '${cartItem.quantity}', false)">-</button>
             <span>${cartItem.quantity}</span>
-            <button onclick="increaseQuantity('${cartItem.productId}')">+</button>
+            <button onclick="changeQuantity('${cartItem.productId}', '${cartItem.quantity}', true)">+</button>
           </div>
 
         <button class="trash" onclick="removeFromCart('${cartItem.productId}')">
@@ -82,15 +82,6 @@ function productHtml(item, cartItem) {
         </button>
 
         </div>
-
-        ${
-          item.stock > 0
-            ? `<button class="add-btn" onclick="addProductToCart('${item._id}')">
-                Add to Cart
-              </button>`
-            : ""
-        }
-
       </div>
     </div>
   `;
@@ -104,8 +95,6 @@ function getStar(num) {
   }
   return stars;
 }
-// https://api.everrest.educata.dev/shop/cart/product
-
 
 //კალათიდან წაშლა
 async function removeFromCart(id) {
@@ -134,8 +123,16 @@ async function removeFromCart(id) {
   getCart();
 }
 
-//პროდუქტის რაოდენობის გაზრდა
-async function increaseQuantity(productId) {
+//პროდუქტის რაოდენობის ცვლილება
+async function changeQuantity(productId, quantity, increase) {
+  console.log("product id:" + productId);
+  console.log("quantity:" + quantity);
+  let newQuantity = 0;
+  if (increase) {
+    newQuantity = Number(quantity) + 1;
+  } else {
+    newQuantity = Number(quantity) - 1;
+  }
   const response = await fetch(
     "https://api.everrest.educata.dev/shop/cart/product",
     {
@@ -146,46 +143,15 @@ async function increaseQuantity(productId) {
       },
       body: JSON.stringify({
         id: productId,
-        quantity: 1, // +1
+        quantity: newQuantity,
       }),
-    }
+    },
   );
-
   const data = await response.json();
-
   if (!response.ok) {
     console.log("Increase error:", data);
     return;
   }
-
-  cartProducts.innerHTML = "";
-  getCart();
-}
-
-//პროდუქტის რაოდენობის შემცირება
-async function decreaseQuantity(productId) {
-  const response = await fetch(
-    "https://everrest.educata.dev/shop/cart/product",
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        id: productId,
-        quantity: -1, // -1
-      }),
-    }
-  );
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    console.log("Decrease error:", data);
-    return;
-  }
-
   cartProducts.innerHTML = "";
   getCart();
 }

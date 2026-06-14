@@ -43,3 +43,5 @@ function renderProduct(product) {
 }
 
 getProduct();
+
+
