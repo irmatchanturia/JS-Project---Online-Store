@@ -1,7 +1,16 @@
 const cartProducts = document.getElementsByClassName("cart-products")[0];
 const token = sessionStorage.getItem("token");
+const subtotal = document.getElementsByClassName("subtotal")[0];
+const discount = document.getElementsByClassName("discount")[0];
+const total = document.getElementsByClassName("total")[0];
 
-//
+function calculateSummary(current, beforeDiscount) {
+  console.log(current, beforeDiscount);
+  subtotal.innerHTML = "$" + beforeDiscount;
+  discount.innerHTML = "$" + (beforeDiscount - current);
+  total.innerHTML = "$" + current;
+}
+
 async function getCart() {
   const response = await fetch("https://api.everrest.educata.dev/shop/cart", {
     headers: {
@@ -14,6 +23,7 @@ async function getCart() {
     console.log("Error:", data);
     return;
   }
+  calculateSummary(data.total.price.current, data.total.price.beforeDiscount);
   console.log("Added to cart:", data);
   fetchProducts(data.products);
 }

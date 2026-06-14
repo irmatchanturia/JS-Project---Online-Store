@@ -22,9 +22,6 @@ getBrands();
 //ეს არის ფუნქცია, რომლითაც ბექიდან მოგვაქვს პროდუქტები და რომელშიც ასევე გაწერილია ლინკების თავისებურებები
 //და რომელიც პროდუქტების სექციაში ათავსებს ბექიდან წამოღებულ პროდუქტებს
 function getProducts() {
-  pagination.innerHTML = ""; //პაგინაციების სექციის დაცარიელება
-  productsTag.innerHTML = ""; //პროდუქტების სექციის დაცარიელება
-
   let url = `https://api.everrest.educata.dev/shop/products/search?page_index=${index}&page_size=6`;
   if (request["category_id"] != undefined) {
     url += "&category_id=" + request.category_id;
@@ -45,11 +42,15 @@ function getProducts() {
     url += "&keywords=" + request.keywords;
   }
 
+  console.log(request)
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      pagination.innerHTML = ""; //პაგინაციების სექციის დაცარიელება
+      productsTag.innerHTML = ""; //პროდუქტების სექციის დაცარიელება
       handlePagination(data, index);
       allProducts = data.products;
+      console.log(data)
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
       });
@@ -83,11 +84,7 @@ function productHtml(item) {
       </a>
         <div class="rating">
           <p>${getStar(item.rating)}</p>
-          ${
-            item.stock > 0
-              ? `<p>(${item.stock})</p>`
-              : ``
-          }
+          ${item.stock > 0 ? `<p>(${item.stock})</p>` : ``}
         </div>
 
         <div class="price">
@@ -134,7 +131,7 @@ function addClicksOnIndecies() {
 function getStar(num) {
   let starNumber = num;
   let stars = "";
-  for (let i = 0; i < starNumber; i++) {
+  for (let i = 1; i < starNumber; i++) {
     stars += `<i class="fa-solid fa-star"></i>`;
   }
   return stars;
@@ -191,6 +188,13 @@ let filterButton = document.getElementsByClassName("filter-btn")[0];
 filterButton.addEventListener("click", () => {
   request.price_min = min;
   request.price_max = max;
+  const selectedRating = document.querySelector('input[name="rating"]:checked');
+  if (selectedRating.value != "All") {
+    request.rating = Number(selectedRating.value);
+  } else {
+    request.rating = undefined
+  }
+
   getProducts();
 });
 
@@ -263,3 +267,5 @@ async function addProductToCart(id) {
   }
   console.log("Added to cart:", data);
 }
+
+//რეითინგის მიხედვით ფილტრაცია

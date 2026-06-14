@@ -175,6 +175,10 @@ body {
   font-size: 18px;
   font-weight: 700;
 }
+.summary-total h5,
+.summary-total span {
+  margin: 0;
+}
 
 .checkout-btn {
   display: block;
@@ -203,7 +207,6 @@ body {
   margin-top: 10px;
   font-size: 14px;
 }
-
 
 @media (max-width: 1024px) {
   .cart {

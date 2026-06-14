@@ -340,7 +340,58 @@
   font-size: 30px;
   text-align: center;
 }
+/* რეითინგის მიხედვით ფილტრაციის დიზაინი */
+.rating-filter {
+  width: 220px;
+  padding: 18px 16px;
+  font-family: Georgia, serif;
+}
 
+.rating-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rating-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-family:"signfonts";
+  font-weight: 600;
+  color: #444;
+}
+
+.arrow {
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+}
+
+.rating-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.rating-option:last-child {
+  margin-bottom: 0;
+}
+
+.rating-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #4f86f7;
+  cursor: pointer;
+}
+
+.stars {
+  color: #f59b42;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
 /* ტაბლეტზე */
 @media (max-width: 1024px) {
   .products {

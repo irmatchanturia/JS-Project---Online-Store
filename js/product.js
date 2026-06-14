@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
+let cartButton = document.getElementsByClassName("cart-btn")[0];
 
 async function getProduct() {
   try {
@@ -40,8 +41,10 @@ function renderProduct(product) {
     product.stock > 0 ? `In Stock (${product.stock})` : "Out of Stock";
 
   document.querySelector(".description").textContent = product.description;
+
+  if (product.stock <= 0) {
+    cartButton.style.display = "none";
+  }
 }
 
 getProduct();
-
-
