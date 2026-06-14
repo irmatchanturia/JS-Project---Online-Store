@@ -1,3 +1,5 @@
+//პაროლის აღდგენა/დარესეტება მეილზე ახალი პაროლის გაგზავნით
+
 let emailField = document.getElementById("recovery-email");
 
 async function recovery(event) {

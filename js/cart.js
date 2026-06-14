@@ -1,6 +1,7 @@
 const cartProducts = document.getElementsByClassName("cart-products")[0];
-
 const token = sessionStorage.getItem("token");
+
+//
 async function getCart() {
   const response = await fetch("https://api.everrest.educata.dev/shop/cart", {
     headers: {
@@ -105,6 +106,8 @@ function getStar(num) {
 }
 // https://api.everrest.educata.dev/shop/cart/product
 
+
+//კალათიდან წაშლა
 async function removeFromCart(id) {
   const response = await fetch(
     "https://api.everrest.educata.dev/shop/cart/product",

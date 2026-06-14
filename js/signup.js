@@ -2,7 +2,7 @@
 
 //რეგისტრაცია
 async function signUp(event) {
-  event.preventDefault(); // form refresh-ის შეჩერება
+  event.preventDefault(); // refresh-ის შეჩერება
 
   const userData = {
     firstName: document.getElementById("signup-firstName").value,
@@ -43,7 +43,7 @@ async function signUp(event) {
 
 //ავტორიზაცია
 async function signIn(event) {
-  event.preventDefault(); // რეფრეშის გაჩერება
+  event.preventDefault(); // რეფრეშის შეჩერება
 
   const email = document.getElementById("signin-email").value;
   const password = document.getElementById("signin-password").value;

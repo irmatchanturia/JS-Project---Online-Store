@@ -2,6 +2,8 @@ const slider = document.getElementById("slider");
 let min = 0;
 let max = 7200;
 
+//შემოტანილი სლაიდერი
+
 noUiSlider.create(slider, {
   start: [min, max],
   connect: true,

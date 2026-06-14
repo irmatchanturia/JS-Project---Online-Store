@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/product.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+  </head>
+
+  <body>
+    <div id="header" style="position: fixed; width: 100%; z-index: 1000"></div>
+
+    <main class="product-page">
+      <section class="product-container">
+        <div class="image-section">
+          <img class="product-image" src="" alt="" />
+        </div>
+
+        <div class="info-section">
+          <h1 class="title"></h1>
+
+          <p class="price"></p>
+
+          <p class="brand"></p>
+
+          <p class="category"></p>
+
+          <p class="rating"></p>
+
+          <p class="stock"></p>
+
+          <button class="cart-btn">Add To Cart</button>
+        </div>
+      </section>
+
+      <section class="description-section">
+        <h2>Description</h2>
+
+        <p class="description"></p>
+      </section>
+    </main>
+    <div id="footer"></div>
+
+    <script src="../js/product.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+            setUpHeader();
+            Search();
+          });
+      });
+    </script>
+
+    <script>
+      async function loadFooter() {
+        const response = await fetch("footer.html");
+        const footerHTML = await response.text();
+
+        document.getElementById("footer").innerHTML = footerHTML;
+      }
+
+      loadFooter();
+    </script>
+  </body>
+</html>

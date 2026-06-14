@@ -4,7 +4,7 @@ let index = 1; //ინდექსის განსაზღვრა იმ�
 let selectedCategories = []; //არჩეული კატეგორიები ერეიში რომ მოექცეს
 let sideBarBrands = document.getElementsByClassName("side-bar-brands")[0]; //ბრენდების ჩამონათვალთან წვდომა
 let allProducts = "";
-//ამ ობიექტით იქმნება ყოველ ჯერზე უნიკალური ლინკი, იმის მიხედვით რა მონაცემები შეგვყავს და რა არა
+//ამ ობიექტით იქმნება ყოველ ჯერზე უნიკალური ლინკი, იმის მიხედვით რა მონაცემები შეგვყავს
 let request = {
   category_id: undefined,
   brand: undefined,
@@ -74,17 +74,19 @@ function handlePagination(data, index) {
 function productHtml(item) {
   return `
     <div class="product">
-      <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
-
+      <a href="./product.html?id=${item._id}" class = "product-photo">
+        <img referrerpolicy="no-referrer" src="${item.thumbnail}" />
+      </a>
       <div class="info">
+      <a href="./product.html?id=${item._id}" class="product-link">
         <p class="title">${item.title}</p>
-
+      </a>
         <div class="rating">
           <p>${getStar(item.rating)}</p>
           ${
             item.stock > 0
               ? `<p>(${item.stock})</p>`
-              : `<p id="not-in-stock">Not in Stock</p>`
+              : ``
           }
         </div>
 
@@ -233,6 +235,7 @@ function Search() {
 }
 
 //კალათა
+//თუ ტოკენი არ აქვს, აღარ გააგრძელებს.
 async function addProductToCart(id) {
   const token = sessionStorage.getItem("token");
   if (!token) {
