@@ -252,9 +252,7 @@ function showPopup(message) {
   }, 2500);
 }
 
-function closePopup() {
-  document.getElementById("popup").classList.add("hidden");
-}
+
 //კალათა
 //თუ ტოკენი არ აქვს, აღარ გააგრძელებს.
 async function addProductToCart(id) {

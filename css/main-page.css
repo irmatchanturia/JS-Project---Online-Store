@@ -397,7 +397,6 @@
   position: fixed;
   top: 20px;
   right: 20px;
-
   display: flex;
   align-items: center;
   gap: 12px;
@@ -416,18 +415,6 @@
 
   animation: slideIn 0.3s ease;
   z-index: 9999;
-}
-
-/* red icon circle */
-.toast-icon {
-  width: 28px;
-  height: 28px;
-  background: #ff4d4f;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
 }
 
 .toast-text {

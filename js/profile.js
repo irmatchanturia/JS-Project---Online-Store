@@ -1,4 +1,6 @@
 //მონაცემების დარედაქტირება და ცვლილებების შენახვა
+const token = sessionStorage.getItem("token");
+
 document
   .getElementById("update-form")
   .addEventListener("submit", function (event) {
@@ -20,8 +22,7 @@ document
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer " + JSON.parse(sessionStorage.getItem("token"))?.access_token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
     })
@@ -30,7 +31,7 @@ document
         if (data.error) {
           alert(data.error);
         } else {
-          alert("Changes saved successfully!");
+          showPopup("Changes saved successfully!");
         }
       });
   });
@@ -50,8 +51,7 @@ document
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer " + JSON.parse(sessionStorage.getItem("token"))?.access_token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(passwordData),
     })
@@ -63,7 +63,7 @@ document
         if (data.error) {
           alert(data.error);
         } else {
-          alert("Password changed successfully!");
+          showPopup("Password changed successfully!");
         }
       });
   });
@@ -73,8 +73,7 @@ document.getElementById("delete-form").addEventListener("click", function () {
   fetch("https://api.everrest.educata.dev/auth/delete", {
     method: "DELETE",
     headers: {
-      Authorization:
-        "Bearer " + JSON.parse(sessionStorage.getItem("token"))?.access_token,
+      Authorization: `Bearer ${token}`,
     },
   })
     .then((res) => {
@@ -85,9 +84,22 @@ document.getElementById("delete-form").addEventListener("click", function () {
       if (data.error) {
         alert(data.error);
       } else {
-        alert("Your Account is Deleted!");
+        showPopup("Your Account is Deleted");
         sessionStorage.removeItem("token");
         window.location.href = "main-page.html";
       }
     });
 });
+
+function showPopup(message) {
+  const popup = document.getElementById("popup");
+  const text = document.getElementById("popup-text");
+
+  text.innerText = message;
+  popup.classList.remove("hidden");
+
+  // auto close
+  setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 2500);
+}
