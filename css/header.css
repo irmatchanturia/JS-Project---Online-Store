@@ -2,9 +2,17 @@
   font-family: "hfonts";
   src: url(../fonts/BowlbyOne-Regular.ttf) format("opentype");
 }
+
 @font-face {
   font-family: "signfont";
   src: url(../fonts/Nunito-Italic-VariableFont_wght.ttf);
+}
+
+/* ================= HEADER BASE ================= */
+
+header {
+  background-color: rgb(238, 235, 235);
+  padding: 10px 5%;
 }
 
 .header-first-line {
@@ -15,16 +23,39 @@
   letter-spacing: 5px;
 }
 
+/* ================= TOP LINE ================= */
+
 .header-second-line {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .shop-name {
   font-family: "hfonts";
   letter-spacing: 2px;
-  font-size: clamp(20px, 2vw, 50px);
+  font-size: clamp(18px, 2vw, 40px);
+  white-space: nowrap;
 }
+
+#store {
+  color: blueviolet;
+}
+
+
+.search-bar {
+  flex: 1;
+  min-width: 150px;
+  max-width: 400px;
+  max-height: 40px;
+  border-radius: 20px;
+  border: 1px solid black;
+  padding-left: 15px;
+}
+
+
 .sign-log {
   display: flex;
   gap: 10px;
@@ -34,48 +65,24 @@
 
 .sign-log a {
   color: rgb(26, 31, 31);
-  padding: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
+
 .sign-log a:hover {
   background-color: white;
-  border-radius: 10px;
 }
 
-.search-bar {
-  width: clamp(300px, 2vw, 100px);
-  border-radius: 20px;
-  border: 1px solid black;
-  padding-left: 20px;
-  height: 40px;
-}
-
-header {
-  background-color: rgb(238, 235, 235);
-  padding: 10px;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-#search-icon {
-  transform: translateX(-50px);
-}
-
-#store {
-  color: #534ab7;
-}
-
-.logout {
-  display: none;
-  cursor: pointer;
-}
-
-.profile {
-  cursor: pointer;
-}
+.logout,
+.profile,
 .shopping-cart {
-  max-width: 30px;
-  max-height: 30px;
   cursor: pointer;
+}
+
+.shopping-cart {
+  width: 28px;
+  height: 28px;
   display: none;
 }
 
@@ -83,36 +90,34 @@ header {
   display: none;
   font-size: 28px;
   cursor: pointer;
-  z-index: 9999;
-  position: relative;
+  z-index: 10000;
 }
+
 
 @media (max-width: 768px) {
   .burger {
     display: block;
   }
 
-  .header-second-line {
-    position: relative;
-  }
-
   .sign-log {
     display: none;
-  }
-
-  .search-bar {
-    width: 70%;
   }
 
   .header-second-line.active .sign-log {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
+    top: 0;
     right: 0;
-    top: 60px;
+    width: 100%;
+    height: 100vh;
     background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 40px 20px;
+    gap: 20px;
+    box-shadow: none;
+  }
+
+  .header-second-line.active {
+    position: relative;
   }
 }

@@ -42,7 +42,7 @@ function getProducts() {
     url += "&keywords=" + request.keywords;
   }
 
-  console.log(request)
+  console.log(request);
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -50,7 +50,7 @@ function getProducts() {
       productsTag.innerHTML = ""; //პროდუქტების სექციის დაცარიელება
       handlePagination(data, index);
       allProducts = data.products;
-      console.log(data)
+      console.log(data);
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
       });
@@ -192,7 +192,7 @@ filterButton.addEventListener("click", () => {
   if (selectedRating.value != "All") {
     request.rating = Number(selectedRating.value);
   } else {
-    request.rating = undefined
+    request.rating = undefined;
   }
 
   getProducts();
@@ -238,14 +238,36 @@ function Search() {
   });
 }
 
+//pop up
+function showPopup(message) {
+  const popup = document.getElementById("popup");
+  const text = document.getElementById("popup-text");
+
+  text.innerText = message;
+  popup.classList.remove("hidden");
+
+  // auto close
+  setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 2500);
+}
+
+function closePopup() {
+  document.getElementById("popup").classList.add("hidden");
+}
 //კალათა
 //თუ ტოკენი არ აქვს, აღარ გააგრძელებს.
 async function addProductToCart(id) {
   const token = sessionStorage.getItem("token");
   if (!token) {
-    console.log("No token found");
+    showPopup("Please confirm authorization.");
+
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 2500);
     return;
   }
+
   const response = await fetch(
     "https://api.everrest.educata.dev/shop/cart/product",
     {
@@ -265,7 +287,7 @@ async function addProductToCart(id) {
     console.log("Error:", data);
     return;
   }
-  console.log("Added to cart:", data);
+  showPopup("✅Product successfully added to cart 🛒");
 }
 
 //რეითინგის მიხედვით ფილტრაცია

@@ -33,6 +33,13 @@ function logOut() {
 const burger = document.getElementById("burger");
 const headerSecond = document.querySelector(".header-second-line");
 
-burger.addEventListener("click", () => {
-  headerSecond.classList.toggle("active");
-});
+function setUpBurgerMenu() {
+  const burger = document.getElementById("burger");
+  const headerSecond = document.querySelector(".header-second-line");
+
+  if (!burger || !headerSecond) return;
+
+  burger.addEventListener("click", () => {
+    headerSecond.classList.toggle("active");
+  });
+}

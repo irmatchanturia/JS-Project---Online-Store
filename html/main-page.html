@@ -76,6 +76,9 @@
         <div class="pagination"></div>
       </div>
     </div>
+    <div id="popup" class="toast hidden">
+      <div class="toast-text" id="popup-text"></div>
+    </div>
     <input type="text" placeholder="რით შემიძლია დაგეხმაროთ?" id="user-input" />
     <button onclick="GetSuggestion()">პასუხი</button>
 
@@ -93,6 +96,7 @@
           .then((res) => res.text())
           .then((data) => {
             document.getElementById("header").innerHTML = data;
+            setUpBurgerMenu();
             setUpHeader();
             Search();
           });
