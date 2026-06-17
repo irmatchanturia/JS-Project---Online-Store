@@ -444,6 +444,7 @@
     opacity: 1;
   }
 }
+
 /* ტაბლეტზე */
 @media (max-width: 1024px) {
   .products {

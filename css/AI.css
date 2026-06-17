@@ -1,0 +1,41 @@
+.chat-icon {
+  display: flex;
+  background-color: black;
+  color: white;
+  gap: 10px;
+  padding: 20px 40px;
+  width: fit-content;
+  position: fixed;
+  bottom: 1px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  font-family: "thin-font";
+  font-weight: bold;
+}
+
+.chat-icon-responsive {
+  display: none;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  padding: 15px;
+  width: fit-content;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  font-family: "thin-font";
+  font-weight: bold;
+}
+
+@media screen and (max-width: 900px) {
+  .chat-icon {
+    display: none;
+  }
+
+  .chat-icon-responsive {
+    display: block;
+  }
+}
