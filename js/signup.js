@@ -1,5 +1,3 @@
-// let accessToken = "";
-
 //რეგისტრაცია
 async function signUp(event) {
   event.preventDefault(); // refresh-ის შეჩერება
@@ -27,14 +25,9 @@ async function signUp(event) {
     });
 
     const data = await res.json();
-
-    console.log("STATUS:", res.status);
-    console.log("RESPONSE:", data);
-
     if (!res.ok) {
       throw new Error(data.errorKeys.join(" "));
     }
-    // sessionStorage.setItem("token", JSON.stringify(data._id));
     window.location.href = "login.html";
   } catch (error) {
     alert(`Registration is not Succesfull: ${error.message}`);
@@ -58,9 +51,6 @@ async function signIn(event) {
     });
 
     const data = await res.json();
-
-    // accessToken = data.access_token;
-
     if (!res.ok) {
       throw new Error(data.errorKeys.join(" "));
     }

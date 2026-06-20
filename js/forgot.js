@@ -18,8 +18,6 @@ async function recovery(event) {
       body: JSON.stringify(request),
     });
     const data = await res.json();
-    console.log(data);
-
     if (res.ok) {
       alert("Recovery email sent!");
       window.location.href = "login.html";
@@ -27,7 +25,6 @@ async function recovery(event) {
       alert(data.message || "Something went wrong");
     }
   } catch (error) {
-    console.error(error);
     alert("Network error");
   }
 }

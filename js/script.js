@@ -1,6 +1,6 @@
 let productsTag = document.getElementsByClassName("products")[0]; //პროდუქტების სექციასთან წვდომა
 let pagination = document.getElementsByClassName("pagination")[0]; //პაგინაციის ადგილთან წვდომა
-let index = 1; //ინდექსის განსაზღვრა იმისთვის რომ სულ პირველ გვერდზე დაბრუნდეს?
+let index = 1; //ინდექსის განსაზღვრა იმისთვის რომ თავიდან პირველი გვერდი ჩაიტვირთოს და მერე შეიცვალოს პაგინაციის მიხედვით
 let selectedCategories = []; //არჩეული კატეგორიები ერეიში რომ მოექცეს
 let sideBarBrands = document.getElementsByClassName("side-bar-brands")[0]; //ბრენდების ჩამონათვალთან წვდომა
 let allProducts = "";
@@ -42,7 +42,6 @@ function getProducts() {
     url += "&keywords=" + request.keywords;
   }
 
-  console.log(request);
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -50,7 +49,6 @@ function getProducts() {
       productsTag.innerHTML = ""; //პროდუქტების სექციის დაცარიელება
       handlePagination(data, index);
       allProducts = data.products;
-      console.log(data);
       data.products.forEach((item) => {
         productsTag.innerHTML += productHtml(item);
       });
@@ -170,7 +168,7 @@ function capitalizeFirstLetter(str) {
 //კატეგორიაზე დაკლიკება
 function onCategoryClicked(id) {
   if (selectedCategories.includes(id)) {
-    selectedCategories = selectedCategories.filter((item) => item !== id);
+    selectedCategories = selectedCategories.filter((item) => item !== id);//ამოაგდე ეს კონკრეტული კატეგორია selected category-იდან
   } else {
     selectedCategories.push(id);
   }
@@ -194,7 +192,6 @@ filterButton.addEventListener("click", () => {
   } else {
     request.rating = undefined;
   }
-
   getProducts();
 });
 
@@ -258,7 +255,7 @@ function showPopup(message) {
 async function addProductToCart(id) {
   const token = sessionStorage.getItem("token");
   if (!token) {
-    showPopup("Please confirm authorization.");
+    showPopup("Please Confirm Authorization.");
 
     setTimeout(() => {
       window.location.href = "login.html";
@@ -282,10 +279,8 @@ async function addProductToCart(id) {
   );
   const data = await response.json();
   if (!response.ok) {
-    console.log("Error:", data);
     return;
   }
   showPopup("✅Product successfully added to cart 🛒");
 }
 
-//რეითინგის მიხედვით ფილტრაცია

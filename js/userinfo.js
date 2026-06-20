@@ -17,7 +17,9 @@ async function getCurrentUser() {
   const user = await res.json();
 
   if (welcomeMessage) {
-    welcomeMessage.innerHTML = `<p>Welcome, ${user.firstName}!</p>`;
+    if (user.firstName !== undefined) {
+      welcomeMessage.innerHTML = `<p>Welcome, ${user.firstName}!</p>`;
+    }
   }
 
   if (document.getElementById("update-firstName")) {
@@ -25,14 +27,13 @@ async function getCurrentUser() {
     document.getElementById("update-lastName").value = user.lastName;
     document.getElementById("update-email").value = user.email;
     document.getElementById("update-age").value = user.age;
+    // document.getElementById("update-password").value = user.password;
     document.getElementById("update-address").value = user.address;
     document.getElementById("update-phone").value = user.phone;
     document.getElementById("update-zipcode").value = user.zipcode;
     document.getElementById("update-avatar").value = user.avatar;
     document.getElementById("update-gender").value = user.gender;
   }
-
-  console.log(user);
 }
 
 getCurrentUser();

@@ -1,12 +1,3 @@
-@font-face {
-  font-family: "name-font";
-  src: url("../fonts/name-font.ttf") format("opentype");
-}
-
-@font-face {
-  font-family: "thin-font";
-  src: url("../fonts/light-font.ttf") format("opentype");
-}
 
 .footer-main {
   background-color: rgb(238, 235, 235);

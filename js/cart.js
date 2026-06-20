@@ -5,7 +5,6 @@ const discount = document.getElementsByClassName("discount")[0];
 const total = document.getElementsByClassName("total")[0];
 
 function calculateSummary(current, beforeDiscount) {
-  console.log(current, beforeDiscount);
   subtotal.innerHTML = "$" + beforeDiscount;
   discount.innerHTML = "$" + (beforeDiscount - current);
   total.innerHTML = "$" + current;
@@ -20,11 +19,9 @@ async function getCart() {
   });
   const data = await response.json();
   if (!response.ok) {
-    console.log("Error:", data);
     return;
   }
   calculateSummary(data.total.price.current, data.total.price.beforeDiscount);
-  console.log("Added to cart:", data);
   fetchProducts(data.products);
 }
 getCart();
@@ -37,7 +34,6 @@ function fetchProducts(products) {
       .then((response) => response.json())
       .then((data) => {
         cartProducts.innerHTML += productHtml(data, product);
-        console.log(data);
       });
   });
 }
@@ -121,11 +117,8 @@ async function removeFromCart(id) {
       }),
     },
   );
-
   const data = await response.json();
-
   if (!response.ok) {
-    console.log("Error:", data);
     return;
   }
 
@@ -159,7 +152,6 @@ async function changeQuantity(productId, quantity, increase) {
   );
   const data = await response.json();
   if (!response.ok) {
-    console.log("Increase error:", data);
     return;
   }
   cartProducts.innerHTML = "";

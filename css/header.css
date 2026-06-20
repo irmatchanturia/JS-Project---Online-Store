@@ -8,7 +8,6 @@
   src: url(../fonts/Nunito-Italic-VariableFont_wght.ttf);
 }
 
-/* ================= HEADER BASE ================= */
 
 header {
   background-color: rgb(238, 235, 235);
@@ -23,7 +22,6 @@ header {
   letter-spacing: 5px;
 }
 
-/* ================= TOP LINE ================= */
 
 .header-second-line {
   display: flex;
@@ -48,8 +46,7 @@ header {
 .search-bar {
   flex: 1;
   min-width: 150px;
-  max-width: 400px;
-  max-height: 40px;
+  min-height: 40px;
   border-radius: 20px;
   border: 1px solid black;
   padding-left: 15px;
