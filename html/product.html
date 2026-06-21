@@ -32,7 +32,7 @@
 
           <p class="stock"></p>
 
-          <button class="cart-btn" onclick="addProductToCart('${item._id}')">
+          <button class="cart-btn" onclick="addProductToCart()">
             Add To Cart
           </button>
         </div>
@@ -43,6 +43,9 @@
 
         <p class="description"></p>
       </section>
+      <div id="popup" class="toast hidden">
+        <div class="toast-text" id="popup-text"></div>
+      </div>
     </main>
 
     <div id="footer"></div>

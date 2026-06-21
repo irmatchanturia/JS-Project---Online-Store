@@ -1147,6 +1147,9 @@ const API_KEY =
   "";
 function GetSuggestion() {
   let value = document.getElementById("user-input").value;
+  const result = document.getElementById("result");
+  result.classList.add("loading");
+  result.innerText = "ვფიქრობ...";
   const datasetAsString = JSON.stringify(productsDataset, null, 2);
   const prompt = `
 შენ ხარ "Digital Store"-ის დამხმარე ასისტენტი. შენი ამოცანაა, 
@@ -1204,13 +1207,11 @@ ${value}
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-
-      document.getElementById("result").innerText = data.content[0].text;
+      result.classList.remove("loading");
+      result.innerText = data.content[0].text;
     })
     .catch((error) => {
-      console.log("შეცდომა");
-      document.getElementById("result").innerText =
-        "შეცდომა მოხდა. გთხოვთ სცადოთ თავიდან";
+      result.classList.remove("loading");
+      result.innerText = "შეცდომა მოხდა. გთხოვთ სცადოთ თავიდან";
     });
 }

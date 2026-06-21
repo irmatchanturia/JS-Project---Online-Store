@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/main-page.css" />
+    <link rel="stylesheet" href="../css/AI.css" />
     <link rel="stylesheet" href="../css/footer.css" />
   </head>
   <body>
@@ -79,9 +80,15 @@
     <div id="popup" class="toast hidden">
       <div class="toast-text" id="popup-text"></div>
     </div>
-    <input type="text" placeholder="რით შემიძლია დაგეხმაროთ?" id="user-input" />
-    <button onclick="GetSuggestion()">პასუხი</button>
-
+    <div class="ai-box">
+      <input
+        type="text"
+        placeholder="რით შემიძლია დაგეხმაროთ?"
+        class="ai"
+        id="user-input"
+      />
+      <button class="ai-send" onclick="GetSuggestion()">პასუხი</button>
+    </div>
     <div id="result"></div>
 
     <div id="footer"></div>

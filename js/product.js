@@ -48,3 +48,49 @@ function renderProduct(product) {
 }
 
 getProduct();
+
+//პროდუქტის დამატება კალათაში
+async function addProductToCart() {
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    showPopup("Please Confirm Authorization.");
+
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 2500);
+    return;
+  }
+
+  const response = await fetch(
+    "https://api.everrest.educata.dev/shop/cart/product",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id: productId,
+        quantity: 1,
+      }),
+    },
+  );
+  const data = await response.json();
+  if (!response.ok) {
+    return;
+  }
+  showPopup("✅Product successfully added to cart 🛒");
+}
+
+function showPopup(message) {
+  const popup = document.getElementById("popup");
+  const text = document.getElementById("popup-text");
+
+  text.innerText = message;
+  popup.classList.remove("hidden");
+
+  // auto close
+  setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 2500);
+}

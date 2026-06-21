@@ -1,41 +1,147 @@
-.chat-icon {
+.ai-box {
   display: flex;
-  background-color: black;
-  color: white;
+  align-items: center;
   gap: 10px;
-  padding: 20px 40px;
-  width: fit-content;
-  position: fixed;
-  bottom: 1px;
-  right: 20px;
-  z-index: 1000;
-  cursor: pointer;
-  font-family: "thin-font";
-  font-weight: bold;
+  max-width: 520px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: #ffffff;
+  border: 1.5px solid #e5e5e0;
+  border-radius: 999px;
+  padding: 8px 8px 8px 18px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.chat-icon-responsive {
-  display: none;
-  color: white;
-  background-color: black;
-  border-radius: 50%;
-  padding: 15px;
-  width: fit-content;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 1000;
-  cursor: pointer;
-  font-family: "thin-font";
-  font-weight: bold;
+.ai-box:hover {
+  border-color: #d4d4cd;
 }
 
-@media screen and (max-width: 900px) {
-  .chat-icon {
-    display: none;
+.ai-box:focus-within {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12);
+}
+
+.ai-spark {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: #6c5ce7;
+  animation: ai-breathe 2.6s ease-in-out infinite;
+}
+
+@keyframes ai-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
   }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
 
-  .chat-icon-responsive {
-    display: block;
+input.ai {
+  all: unset;
+  flex: 1;
+  min-width: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 15px;
+  color: #1a1a1a;
+  padding: 5px 0;
+}
+
+input.ai::placeholder {
+  color: #9b9b96;
+}
+
+.ai-send {
+  all: unset;
+  flex-shrink: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background: #1a1a1a;
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  opacity: 0.35;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+.ai-send:hover {
+  background: #6c5ce7;
+}
+
+input.ai:not(:placeholder-shown) ~ .ai-send {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#result {
+  display: none;
+  max-width: 520px;
+  margin: 14px auto 35px;
+  background: #ffffff;
+  border: 1.5px solid #e5e5e0;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #1a1a1a;
+  white-space: pre-wrap;
+}
+
+#result:not(:empty) {
+  display: block;
+  animation: ai-fade-in 0.25s ease;
+}
+
+#result.loading {
+  display: block;
+  color: #9b9b96;
+  font-style: italic;
+}
+
+@keyframes ai-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* მობილურზე */
+@media (max-width: 480px) {
+  .ai-box {
+    max-width: 100%;
+    padding: 6px 6px 6px 14px;
+  }
+  input.ai {
+    font-size: 14px;
+  }
+  .ai-send {
+    font-size: 13px;
+    padding: 8px 14px;
   }
 }
